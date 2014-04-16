@@ -24,7 +24,7 @@
   ],
   "browser_action": {
     "default_icon": "image/unnamed.png",
-    "default_popup": "index.html
+    "default_popup": "index.html"
   },
   "background": {
       "scripts": [ "common/background.js"]
