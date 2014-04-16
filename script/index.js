@@ -40,7 +40,9 @@ $(function(){
 			var c=$("#"+d.id);
 			c.live("click",function(){
 				if(d.id==this.id){
-					chrome.tabs.update({url:d.url})
+					chrome.tabs.update({
+						url:d.url
+					})
 				}
 			})
 		})
