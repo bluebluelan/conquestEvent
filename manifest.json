@@ -1,0 +1,32 @@
+{
+  "name": "靈異陰陽錄Chrome版",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Blue",
+  "icons": {
+    "128": "image/unnamed.png",
+    "16": "image/unnamed.png"
+ }
+   ,
+   "content_scripts": [
+    {
+      "matches": ["http://zc2.ayakashi.zynga.com/*"],
+      "js": ["common/jquery.min.js","common/action.js"],
+      "run_at":"document_end"
+    }
+  ],
+  "permissions": [
+    "http://zc2.ayakashi.zynga.com/*",
+    "\u003Call_urls\u003E",    
+    "webRequest",
+    "webRequestBlocking",
+    "tabs"
+  ],
+  "browser_action": {
+    "default_icon": "image/unnamed.png",
+    "default_popup": "index.html"
+  },
+  "background": {
+      "scripts": [ "common/background.js"]
+   }
+}
