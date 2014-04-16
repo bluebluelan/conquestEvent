@@ -14,46 +14,47 @@ $(function(){
 	$.ZDpost(textList[0],textList[1])});
 	$(".main_memu").load("../view/memu.html",function(){$.each(main_memu,function(b,d){var c=$("#"+d.id);
 	c.live("click",function(){if(d.id==this.id){chrome.tabs.update({url:d.url})}})})});
-	$(".index_label").html(version);randomcolor()});
-	$.ZDpost=function(c,d){
-		var b="http://zc2.ayakashi.zynga.com/zj_game.json?authentication=none&manager=shared";
-		var a=ZDurl+"?_c=ZJLogin&action=GetCookie&next=Entry.start&ZJSESSIONID=";
-		var g="Mozilla/5.0 ZMTransaction/1.0";
-		var e={
-			headers:{
-				device_model:"GT-I9100",device_family:"Android",batch_format_version:"1",bundle_version:"1.7.0",device_name:"Android",userKey:c,device_type:"4",locale:"zh_CN",bundle_identifier:"com.zynga.zjayakashi",udid:d,batch_sequence:0,os_version:"2.3.4"
-			},
-			transactions:{
-				"0":{
-					authHash:"3de557906c1b3ea4bdc6cb906ad1fb21",functionName:"MobileUserController.initUser",sequence:"0",params:{sessionId:null}
-					}
-			},
-			signedParams:{
-				zySig:"0",zySnid:"0",zySNuid:"0",zyUid:"0"
-			}
-		};
-		var f=JSON.stringify(e);
-		$.ajax({
-			url:b,data:f,type:"POST",dataType:"json",
-			headers:{
-				"X-User-Key":c,"X-UDID":d,"X-Has-Persistent-Storage":"true","User-Agent":g
-			},
-			contentType:"application/json",
-			success:function(i){
-				var h=i.responses[0];ZJSESSIONID=h.ZJSESSIONID;chrome.tabs.create({url:a+ZJSESSIONID})
-			},
-			error:function(){alert("登录失败")}
-		})
+	$(".index_label").html(version);randomcolor()
+});
+$.ZDpost=function(c,d){
+	var b="http://zc2.ayakashi.zynga.com/zj_game.json?authentication=none&manager=shared";
+	var a=ZDurl+"?_c=ZJLogin&action=GetCookie&next=Entry.start&ZJSESSIONID=";
+	var g="Mozilla/5.0 ZMTransaction/1.0";
+	var e={
+		headers:{
+			device_model:"GT-I9100",device_family:"Android",batch_format_version:"1",bundle_version:"1.7.0",device_name:"Android",userKey:c,device_type:"4",locale:"zh_CN",bundle_identifier:"com.zynga.zjayakashi",udid:d,batch_sequence:0,os_version:"2.3.4"
+		},
+		transactions:{
+			"0":{
+				authHash:"3de557906c1b3ea4bdc6cb906ad1fb21",functionName:"MobileUserController.initUser",sequence:"0",params:{sessionId:null}
+				}
+		},
+		signedParams:{
+			zySig:"0",zySnid:"0",zySNuid:"0",zyUid:"0"
+		}
 	};
-	function randomcolor(){
-		var a=Array("#e51400","#339933","#1ba1e2","#f09609","#8cbf26","#00aba9","#ff0097","#e671bb","#FF8888","#cc0000","#00FFCC");
-		$(".index_label,#reg,#pay").css("color",a[Math.floor(Math.random()*(a.length))]);
-		setTimeout(randomcolor,150)
-	}
-	function ZDdecode(d){
-		var b=atob(d);
-		var e=CryptoJS.enc.Hex.parse("0bf116e3b67f80a8b00b6489b416343cb8647ef1adc17516245967325cd41d2b");
-		var c=CryptoJS.enc.Utf8.parse("zynga.properties");
-		var a=CryptoJS.AES.decrypt({ciphertext:CryptoJS.enc.Latin1.parse(b)},e,{keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
-		var f=a.toString(CryptoJS.enc.Utf8);var g=f.split(",");return g
-	};
+	var f=JSON.stringify(e);
+	$.ajax({
+		url:b,data:f,type:"POST",dataType:"json",
+		headers:{
+			"X-User-Key":c,"X-UDID":d,"X-Has-Persistent-Storage":"true","User-Agent":g
+		},
+		contentType:"application/json",
+		success:function(i){
+			var h=i.responses[0];ZJSESSIONID=h.ZJSESSIONID;chrome.tabs.create({url:a+ZJSESSIONID})
+		},
+		error:function(){alert("登录失败")}
+	})
+};
+function randomcolor(){
+	var a=Array("#e51400","#339933","#1ba1e2","#f09609","#8cbf26","#00aba9","#ff0097","#e671bb","#FF8888","#cc0000","#00FFCC");
+	$(".index_label,#reg,#pay").css("color",a[Math.floor(Math.random()*(a.length))]);
+	setTimeout(randomcolor,150)
+}
+function ZDdecode(d){
+	var b=atob(d);
+	var e=CryptoJS.enc.Hex.parse("0bf116e3b67f80a8b00b6489b416343cb8647ef1adc17516245967325cd41d2b");
+	var c=CryptoJS.enc.Utf8.parse("zynga.properties");
+	var a=CryptoJS.AES.decrypt({ciphertext:CryptoJS.enc.Latin1.parse(b)},e,{keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
+	var f=a.toString(CryptoJS.enc.Utf8);var g=f.split(",");return g
+};
