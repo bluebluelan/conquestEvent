@@ -1,21 +1,50 @@
 var ZDurl="http://zc2.ayakashi.zynga.com/app.php";
-var main_memu=[{id:"battle",url:ZDurl+"?_c=battle"},{id:"parts",url:ZDurl+"?_c=parts"},{id:"monster",url:ZDurl+"?_c=monster&action=list"},{id:"album",url:ZDurl+"?_c=album"},{id:"shop",url:ZDurl+"?_c=item&action=list&tab=tab-shop-list"},{id:"setting",url:ZDurl+"?_c=settings"},{id:"info",url:ZDurl+"?_c=information"},{id:"friend",url:ZDurl+"?_c=friend"},{id:"exchg",url:ZDurl+"?_c=gacha&action=exchangeList"},{id:"box",url:ZDurl+"?_c=webMessageCenter"},{id:"mypage",url:ZDurl+"?_c=entry&action=mypage"},{id:"quest",url:ZDurl+"?_c=adventure"},{id:"merge",url:ZDurl+"?_c=merge"},{id:"gacha",url:ZDurl+"?_c=gacha"}];
+var main_memu=[
+	{id:"battle",url:ZDurl+"?_c=battle"},
+	{id:"parts",url:ZDurl+"?_c=parts"},
+	{id:"monster",url:ZDurl+"?_c=monster&action=list"},
+	{id:"album",url:ZDurl+"?_c=album"},
+	{id:"shop",url:ZDurl+"?_c=item&action=list&tab=tab-shop-list"},
+	{id:"setting",url:ZDurl+"?_c=settings"},
+	{id:"info",url:ZDurl+"?_c=information"},
+	{id:"friend",url:ZDurl+"?_c=friend"},
+	{id:"exchg",url:ZDurl+"?_c=gacha&action=exchangeList"},
+	{id:"box",url:ZDurl+"?_c=webMessageCenter"},
+	{id:"mypage",url:ZDurl+"?_c=entry&action=mypage"},
+	{id:"quest",url:ZDurl+"?_c=adventure"},
+	{id:"merge",url:ZDurl+"?_c=merge"},
+	{id:"gacha",url:ZDurl+"?_c=gacha"}
+];
 $(function(){
 	var a=$("#select_file").get(0);//get http request;
 	$("#select_file").click(function(){$("#file").click()});
 	$("#file").change(function(c){
-	var d=c.target.files[0];
-	var b=new FileReader();
-	b.readAsText(d);
-	b.onload=function(f){textList=ZDdecode(f.target.result);
-	uuid=textList[0];udid=textList[1];
-	$.ZDpost(uuid,udid)}});
-	$("#keylogin").click(function(){textList=ZDdecode($.trim($("#key").val()));
-	$.ZDpost(textList[0],textList[1])});
-	$(".main_memu").load("../view/memu.html",function(){$.each(main_memu,function(b,d){var c=$("#"+d.id);
-	c.live("click",function(){if(d.id==this.id){chrome.tabs.update({url:d.url})}})})});
-	$(".index_label").html(version);randomcolor()
+		var d=c.target.files[0];
+		var b=new FileReader();
+		b.readAsText(d);
+		b.onload=function(f){
+			textList=ZDdecode(f.target.result);
+			uuid=textList[0];udid=textList[1];
+			$.ZDpost(uuid,udid)
+		}
+	});
+	$("#keylogin").click(function(){
+		textList=ZDdecode($.trim($("#key").val()));
+		$.ZDpost(textList[0],textList[1])
+	});
+	$(".main_memu").load("../view/memu.html",function(){
+		$.each(main_memu,function(b,d){var c=$("#"+d.id);
+			c.live("click",function(){
+				if(d.id==this.id){
+					chrome.tabs.update({url:d.url})
+				}
+			})
+		})
+	});
+	$(".index_label").html(version);
+	randomcolor()
 });
+
 $.ZDpost=function(c,d){
 	var b="http://zc2.ayakashi.zynga.com/zj_game.json?authentication=none&manager=shared";
 	var a=ZDurl+"?_c=ZJLogin&action=GetCookie&next=Entry.start&ZJSESSIONID=";
