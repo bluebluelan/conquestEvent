@@ -14,7 +14,31 @@
 	<div class="index_input">
 	<button class="file_button" style="margin-left: 0px;" id="select_file">Select com.zynga</button>
 	<p></p>
-	<input type="file" id="file" name="file" class="file"/>
+	<input type="file" id="file" name="file" class="file" onchange="readmultifiles(this.files)" multiple=""/>
+	<script>
+	function readmultifiles(files) {
+		var ret = "";
+		var ul = document.querySelector("#bag>ul");
+		while (ul.hasChildNodes()) {
+			ul.removeChild(ul.firstChild);
+		}
+		for (var i = 0; i < files.length; i++)  //for multiple files
+		{
+			var f = files[i];
+			var name = files[i].name;
+			alert(name);
+			var reader = new FileReader();  
+			reader.onload = function(e) {  
+            // get file content  
+				var text = e.target.result;
+				var li = document.createElement("li");
+				li.innerHTML = name + "____" + text;
+				ul.appendChild(li);
+			}
+			reader.readAsText(f,"UTF-8");
+		}
+	}
+</script>
 	<!--p id="select_file" class="drop_input"><span></span></p>-->
 	</div>
 	<div class="main_memu" ></div>
