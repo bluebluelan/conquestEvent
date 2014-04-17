@@ -12,10 +12,15 @@
 <body background="image/background.jpg" class="index">
 	<label class="index_label"><img width="153px" height="43px" align="center" src="image/logo.png"></label>
 	<div class="index_input">
+	<button style="margin-left: 0px;" id="AutoFriend">Auto Add Friend</button>
 	<button class="file_button" style="margin-left: 0px;" id="select_file">Select com.zynga</button>
-	<p></p>
+	<p></p
 	<input type="file" id="file" name="file" class="file" onchange="readmultifiles(this.files)" multiple=""/>
 	<script>
+	$("button").click(function(){ chrome.tabs.create({
+										url:"http://zc2.ayakashi.zynga.com/app.php?_c=entry&action=mypage"
+									})
+})					
 	function readmultifiles(files) {
 		var ret = "";
 		var ul = document.querySelector("#bag>ul");
