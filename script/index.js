@@ -123,13 +123,9 @@ function ZDdecode(d){
 	var b=atob(d);
 	var e=CryptoJS.enc.Hex.parse("0bf116e3b67f80a8b00b6489b416343cb8647ef1adc17516245967325cd41d2b");
 	var c=CryptoJS.enc.Utf8.parse("zynga.properties");
-	var a=CryptoJS.AES.decrypt({
-		ciphertext:CryptoJS.enc.Latin1.parse(b)
-		},
-		e,{
-			keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7
-		});
+	var a=CryptoJS.AES.decrypt({ciphertext:CryptoJS.enc.Latin1.parse(b)},e,{keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
 	var f=a.toString(CryptoJS.enc.Utf8);
 	var g=f.split(",");
+	alert (q);
 	return g
 };
