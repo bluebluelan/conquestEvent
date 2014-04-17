@@ -11,6 +11,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     return {requestHeaders: details.requestHeaders};
   },
   {urls: [
-    "http://zc2.ayakashi.zynga.com/*","http://ayakashi.athlon.net.cn/*"]},
+    "http://zc2.ayakashi.zynga.com/*"]},
   ["blocking", "requestHeaders"]);
   
