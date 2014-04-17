@@ -16,6 +16,13 @@ var main_memu=[
 	{id:"gacha",url:ZDurl+"?_c=gacha"}
 ];
 $(function(){
+	$("#AutoFriend").click(function(){
+    chrome.tabs.create({
+				url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=SearchUser"
+			})
+	});
+});
+$(function(){
 	var a=$("#select_file").get(0);//get http request;
 	$("#select_file").click(function(){
 		$("#file").click()
@@ -31,10 +38,6 @@ $(function(){
 			$.ZDpost(uuid,udid)
 		}
 	});
-	$("#keylogin").click(function(){
-		textList=ZDdecode($.trim($("#key").val()));
-		$.ZDpost(textList[0],textList[1])
-	});
 	$(".main_memu").load("../view/memu.html",function(){
 		$.each(main_memu,function(b,d){
 			var c=$("#"+d.id);
@@ -47,8 +50,6 @@ $(function(){
 			})
 		})
 	});
-	$(".index_label").html(version);
-	//randomcolor()
 });
 
 $.ZDpost=function(c,d){
@@ -113,12 +114,6 @@ $.ZDpost=function(c,d){
 		}
 	})
 };
-/*
-function randomcolor(){
-	var a=Array("#e51400","#339933","#1ba1e2","#f09609","#8cbf26","#00aba9","#ff0097","#e671bb","#FF8888","#cc0000","#00FFCC");
-	$(".index_label,#reg,#pay").css("color",a[Math.floor(Math.random()*(a.length))]);
-	setTimeout(randomcolor,150)
-}*/
 function ZDdecode(d){
 	var b=atob(d);
 	var e=CryptoJS.enc.Hex.parse("0bf116e3b67f80a8b00b6489b416343cb8647ef1adc17516245967325cd41d2b");
@@ -126,6 +121,5 @@ function ZDdecode(d){
 	var a=CryptoJS.AES.decrypt({ciphertext:CryptoJS.enc.Latin1.parse(b)},e,{keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
 	var f=a.toString(CryptoJS.enc.Utf8);
 	var g=f.split(",");
-	alert (q);
 	return g
 };
