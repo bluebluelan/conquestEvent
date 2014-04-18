@@ -11,7 +11,10 @@
    "content_scripts": [
     {
       "matches": ["http://zc2.ayakashi.zynga.com/*"],
-      "js": ["common/jquery.min.js","common/action.js"],
+      "js": [
+		"common/jquery.min.js",
+		"common/actions.js"
+	],
       "run_at":"document_end"
     }
   ],

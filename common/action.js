@@ -1,3 +1,13 @@
-var loadUrl="http://ayakashi.athlon.net.cn/";
-$("body").append("<script type='text/javascript' src='"+loadUrl+"resources/power.js'><\/script>");
-$("body").append("<div class='athlon_memu'></div><div class='athlon_button_close'>关闭</div>");
+var playerName = document.getElementById("query");
+var jqs = document.createElement('script');
+jqs.setAttribute('type', 'text/javascript');
+jqs.setAttribute('src', 'jquery.min.js');
+document.body.appendChild(jqs);
+$(function()
+{
+	$("#btn-mypage-1").click(function(){
+	alert("QQQQ");
+	});
+});
+
+
