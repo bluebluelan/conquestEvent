@@ -13,7 +13,7 @@
       "matches": ["http://zc2.ayakashi.zynga.com/*"],
       "js": [
 		"common/jquery.min.js",
-		"common/actions.js"
+		"common/action.js"
 	],
       "run_at":"document_end"
     }
@@ -30,6 +30,6 @@
     "default_popup": "index.html"
   },
   "background": {
-      "scripts": [ "common/background.js"]
+      "scripts": [ "common/jquery.min.js","common/background.js"]
    }
 }

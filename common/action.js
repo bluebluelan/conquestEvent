@@ -1,13 +1,10 @@
-var playerName = document.getElementById("query");
-var jqs = document.createElement('script');
-jqs.setAttribute('type', 'text/javascript');
-jqs.setAttribute('src', 'jquery.min.js');
-document.body.appendChild(jqs);
-$(function()
-{
-	$("#btn-mypage-1").click(function(){
+var guild=$("#btn-guild-l").text();
+alert(guild);
+/*
+$(function(){
+	$("#btn-guild-l").click(function(){
 	alert("QQQQ");
 	});
 });
-
+*/
 
