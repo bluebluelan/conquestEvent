@@ -15,6 +15,13 @@ var main_memu=[
 	{id:"merge",url:ZDurl+"?_c=merge"},
 	{id:"gacha",url:ZDurl+"?_c=gacha"}
 ];
+document.addEventListener(function () {
+	var data = chrome.extension.getBackgroundPage().ziddata;
+	alert(ziddata);
+	chrome.tabs.create({
+				//		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+data
+					})
+});
 $(function(){
 	$("#AutoFriend").click(function(){
     chrome.tabs.create({
