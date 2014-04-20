@@ -18,6 +18,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
 		ziddata=request;
+		alert("Background"+ziddata);
 		chrome.tabs.create({
-	//	url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+ziddata
-	});
+		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+ziddata
+		});
+	}
+)
