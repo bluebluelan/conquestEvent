@@ -36,6 +36,7 @@ $(function(){
 		$("#file").click()
 	});
 	$("#file").change(function(c){
+		alert(c.target.files.length);//num of zynga.properties
 		var d=c.target.files[0];//load zynga.properties 
 		var b=new FileReader();
 		b.readAsText(d);
