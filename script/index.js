@@ -44,7 +44,11 @@ $(function(){
 			textList=ZDdecode(f.target.result);
 			uuid=textList[0];
 			udid=textList[1];
-			$.ZDpost(uuid,udid)
+			$.ZDpost(uuid,udid);
+			alert("Loading");
+			chrome.tabs.update({
+				url:http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true
+			})
 		}
 	});
 	$(".main_memu").load("../view/memu.html",function(){
