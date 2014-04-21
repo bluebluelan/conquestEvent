@@ -20,14 +20,14 @@ document.addEventListener(function () {
 	var data = chrome.extension.getBackgroundPage().ziddata;
 	alert(ziddata);
 	chrome.tabs.create({
-				//		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+data
-					})
+//		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+data
+	})
 });
 $(function(){
 	$("#AutoFriend").click(function(){
-    chrome.tabs.create({
-				url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=SearchUser"
-			})
+		chrome.tabs.update({
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true"
+		})
 	});
 });
 $(function(){
@@ -36,19 +36,19 @@ $(function(){
 		$("#file").click()
 	});
 	$("#file").change(function(c){
-		alert(c.target.files.length);//num of zynga.properties
-		var d=c.target.files[0];//load zynga.properties 
-		var b=new FileReader();
-		b.readAsText(d);
-		b.onload=function(f){
-			textList=ZDdecode(f.target.result);
-			uuid=textList[0];
-			udid=textList[1];
-			$.ZDpost(uuid,udid)
-			alert("Loading");
-			chrome.tabs.update({
-				url:http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true
-			})
+		alert("fileNumber="+c.target.files.length);//num of zynga.properties
+		for (var i = 0; i < c.target.files.length; i++){
+			var d=c.target.files[i];//load zynga.properties 
+			var b=new FileReader();
+			b.readAsText(d);
+			b.onload=function(f){
+				textList=ZDdecode(f.target.result);
+				uuid=textList[0];
+				udid=textList[1];
+				$.ZDpost(uuid,udid)
+				AFriend();
+				//setTimeout(function(){alert("Count3s"); $.ZDpost(uuid,udid)},3000);
+			};
 		}
 	});
 	$(".main_memu").load("../view/memu.html",function(){
@@ -118,9 +118,11 @@ $.ZDpost=function(c,d){
 		success:function(i){
 			var h=i.responses[0];
 			ZJSESSIONID=h.ZJSESSIONID;
-			chrome.tabs.create({
+			chrome.tabs.update({
 				url:a+ZJSESSIONID
 			})
+		//	alert("LoginSucc");
+		//	AFriend();
 		},
 		error:function(){
 			alert("登录失败")
@@ -136,3 +138,13 @@ function ZDdecode(d){
 	var g=f.split(",");
 	return g
 };
+function AFriend(){
+//	alert("Enter AFriend");
+	setTimeout(function(){
+		alert("CountDown 5s and Add Friend");
+		chrome.tabs.update({
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true"
+		})
+	},5000);
+};
+	
