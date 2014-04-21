@@ -37,18 +37,11 @@ $(function(){
 	});
 	$("#file").change(function(c){
 		alert("fileNumber="+c.target.files.length);//num of zynga.properties
-		for (var i = 0; i < c.target.files.length; i++){
+		for (var i = 0; i < c.target.files.length;i++){
+		    alert(i);
 			var d=c.target.files[i];//load zynga.properties 
-			var b=new FileReader();
-			b.readAsText(d);
-			b.onload=function(f){
-				textList=ZDdecode(f.target.result);
-				uuid=textList[0];
-				udid=textList[1];
-				$.ZDpost(uuid,udid)
-				AFriend();
-				//setTimeout(function(){alert("Count3s"); $.ZDpost(uuid,udid)},3000);
-			};
+			alert("Zlogin");
+			Zlogin(d);
 		}
 	});
 	$(".main_memu").load("../view/memu.html",function(){
@@ -138,13 +131,25 @@ function ZDdecode(d){
 	var g=f.split(",");
 	return g
 };
+function Zlogin(zid){
+	var b=new FileReader();
+	b.readAsText(zid);
+	b.onload=function(f){
+		textList=ZDdecode(f.target.result);
+		uuid=textList[0];
+		udid=textList[1];
+		$.ZDpost(uuid,udid)
+		AFriend();
+		//	setTimeout(function(){alert("ForloopEnd"+i);},5000
+	}
+};
 function AFriend(){
 //	alert("Enter AFriend");
 	setTimeout(function(){
-		alert("CountDown 5s and Add Friend");
+	//	alert("CountDown 5s and Add Friend");
 		chrome.tabs.update({
 			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true"
 		})
-	},5000);
+	},10000);
 };
 	
