@@ -32,23 +32,21 @@ $(function(){
 	});
 });
 $(function(){
-	$("#BatchAddMode").change(function(){
-		alert($("input:checked").val());
-	});
+
 	var a=$("#select_file").get(0);//get http request;
 	$("#select_file").click(function(){
 		$("#file").click()
 	});
 	$("#file").change(function(c){
 			if($("#BatchAddMode").prop("checked")){
-				alert("Zlogin");
+			//	alert("Zlogin");
 				Zlogin(c);
 			}
-			else if($("#AutoAddstatue").prop("checked"){
+			else if($("#AutoAddstatue").prop("checked")){
 				// HAVEN'T FINISH YET
 			}
 			else{
-				alert("SingleLogin");
+			//	alert("SingleLogin");
 				Slogin(c);
 			}
 		}
@@ -141,7 +139,7 @@ function ZDdecode(d){
 	return g
 };
 function Zlogin(zid){
-	alert("fileNumber="+zid.target.files.length);//num of zynga.properties
+	//alert("fileNumber="+zid.target.files.length);//num of zynga.properties
 	if(i>zid.target.files.length){
 		return;
 	}
@@ -159,7 +157,6 @@ function Zlogin(zid){
 	setTimeout(function(){Zlogin(zid);},10000);
 };
 function Slogin(zid){
-	alert("fileNumber="+zid.target.files.length);//num of zynga.properties
 	if(i>zid.target.files.length){
 		return;
 	}
@@ -182,8 +179,3 @@ function AFriend(){
 		})
 	},5000);
 };
-function Accel(i){
-	i=i+1;
-	return i;
-};
-	

@@ -15,7 +15,7 @@
 		"common/jquery.min.js",
 		"common/action.js"
 	],
-      "run_at":"document_end"
+      "run_at":"document_idle"
     }
   ],
   "permissions": [
