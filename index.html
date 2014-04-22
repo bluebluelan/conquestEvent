@@ -12,9 +12,10 @@
 <body background="image/background.jpg" class="index">
 	<label class="index_label"><img width="153px" height="43px" align="center" src="image/logo.png"></label>
 	<div class="index_input">
-	<button style="margin-left: 0px;" id="AutoFriend">Auto Friend</button>
+	<button class="file_button" style="margin-left: 0px;" id="AutoFriend">Auto Friend</button>
 	<button class="file_button" style="margin-left: 0px;" id="select_file">Select com.zynga</button>
 	<p></p>
+    <input type="checkbox" id="BatchAddMode" value="2"/>BatchAddMode
 	<input type="file" id="file" name="file" class="file" onchange="readmultifiles(this.files)" multiple=""/>
 	<script>
 	function readmultifiles(files) {

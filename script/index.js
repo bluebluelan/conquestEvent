@@ -32,13 +32,25 @@ $(function(){
 	});
 });
 $(function(){
+	$("#BatchAddMode").change(function(){
+		alert($("input:checked").val());
+	});
 	var a=$("#select_file").get(0);//get http request;
 	$("#select_file").click(function(){
 		$("#file").click()
 	});
 	$("#file").change(function(c){
-		alert("Zlogin");
-		Zlogin(c);
+			if($("#BatchAddMode").prop("checked")){
+				alert("Zlogin");
+				Zlogin(c);
+			}
+			else if($("#AutoAddstatue").prop("checked"){
+				// HAVEN'T FINISH YET
+			}
+			else{
+				alert("SingleLogin");
+				Slogin(c);
+			}
 		}
 	);
 	$(".main_memu").load("../view/memu.html",function(){
@@ -141,11 +153,25 @@ function Zlogin(zid){
 		uuid=textList[0];
 		udid=textList[1];
 		$.ZDpost(uuid,udid)
-	//	AFriend();
-		//	setTimeout(function(){alert("ForloopEnd"+i);},5000
+		AFriend();
 	}
 	i=i+1;
 	setTimeout(function(){Zlogin(zid);},10000);
+};
+function Slogin(zid){
+	alert("fileNumber="+zid.target.files.length);//num of zynga.properties
+	if(i>zid.target.files.length){
+		return;
+	}
+	var d=zid.target.files[i];//load zynga.properties 
+	var b=new FileReader();
+	b.readAsText(d);
+	b.onload=function(f){
+		textList=ZDdecode(f.target.result);
+		uuid=textList[0];
+		udid=textList[1];
+		$.ZDpost(uuid,udid)
+	}
 };
 function AFriend(){
 //	alert("Enter AFriend");
