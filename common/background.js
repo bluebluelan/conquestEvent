@@ -17,9 +17,10 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
 		ziddata=request;
-		alert("Background"+ziddata);
-	//	chrome.tabs.create({
+	//	alert("Background"+ziddata);
+		chrome.tabs.update({
+		url:ziddata
 	//	url:"http://zc2.ayakashi.zynga.com/app.php?_c=friend&action=touch&zid="+ziddata+"&is_json=true"
-	//	});
+		});
 	}
 )
