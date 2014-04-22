@@ -1,4 +1,5 @@
 var ZDurl="http://zc2.ayakashi.zynga.com/app.php";
+var i=0;
 var main_memu=[
 	{id:"battle",url:ZDurl+"?_c=battle"},
 	{id:"parts",url:ZDurl+"?_c=parts"},
@@ -15,14 +16,14 @@ var main_memu=[
 	{id:"merge",url:ZDurl+"?_c=merge"},
 	{id:"gacha",url:ZDurl+"?_c=gacha"}
 ];
-
+/*
 document.addEventListener(function () {
 	var data = chrome.extension.getBackgroundPage().ziddata;
 	alert(ziddata);
 	chrome.tabs.create({
 //		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+data
 	})
-});
+});*/
 $(function(){
 	$("#AutoFriend").click(function(){
 		chrome.tabs.update({
@@ -36,14 +37,10 @@ $(function(){
 		$("#file").click()
 	});
 	$("#file").change(function(c){
-		alert("fileNumber="+c.target.files.length);//num of zynga.properties
-		for (var i = 0; i < c.target.files.length;i++){
-		    alert(i);
-			var d=c.target.files[i];//load zynga.properties 
-			alert("Zlogin");
-			Zlogin(d);
+		alert("Zlogin");
+		Zlogin(c);
 		}
-	});
+	);
 	$(".main_memu").load("../view/memu.html",function(){
 		$.each(main_memu,function(b,d){
 			var c=$("#"+d.id);
@@ -132,16 +129,23 @@ function ZDdecode(d){
 	return g
 };
 function Zlogin(zid){
+	alert("fileNumber="+zid.target.files.length);//num of zynga.properties
+	if(i>zid.target.files.length){
+		return;
+	}
+	var d=zid.target.files[i];//load zynga.properties 
 	var b=new FileReader();
-	b.readAsText(zid);
+	b.readAsText(d);
 	b.onload=function(f){
 		textList=ZDdecode(f.target.result);
 		uuid=textList[0];
 		udid=textList[1];
 		$.ZDpost(uuid,udid)
-		AFriend();
+	//	AFriend();
 		//	setTimeout(function(){alert("ForloopEnd"+i);},5000
 	}
+	i=i+1;
+	setTimeout(function(){Zlogin(zid);},10000);
 };
 function AFriend(){
 //	alert("Enter AFriend");
@@ -150,6 +154,10 @@ function AFriend(){
 		chrome.tabs.update({
 			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true"
 		})
-	},10000);
+	},5000);
+};
+function Accel(i){
+	i=i+1;
+	return i;
 };
 	
