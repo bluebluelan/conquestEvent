@@ -5,6 +5,7 @@ var battlehref = [];
 //var zid = [];
 var parIn = 0;
 var friendZid = [];
+var ii=0
 //alert(zid[1]);
 //alert(geturl);
 	setTimeout(function(){
@@ -26,17 +27,15 @@ var friendZid = [];
 		}
 	},4000);
 	$(".button.mini").mouseover(function(){
-	//	if (geturl==FriendUrl){
-		$("[data-zid]").each(function(){
-		
-			friendZid =$(this).prop("data-zid");
-			alert("Q"+friendZid);
-			//alert(zid[1]);
-			//alert(zid);
-	//	var qq=zid.length;//zid 11 numbers
-	//	chrome.runtime.sendMessage(zid);
+		if (geturl==FriendUrl){
+			$("button[data-zid]").each(function(){
+				friendZid[ii] =$(this).attr('data-zid')+"";
+			//	alert(friendZid);
+				ii++;
+		       // chrome.runtime.sendMessage(friendZid);
 			});
-		//}
+			chrome.runtime.sendMessage(friendZid);
+		}
 	});
 
 /*
