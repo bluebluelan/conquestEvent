@@ -17,9 +17,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
 		ziddata=request;
-		alert("http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+ziddata+"&target_item_id=3&evid=49");
-	/*	chrome.tabs.update({
-	//	url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+ziddata+"&target_item_id=3&evid=49"
-	*/	});
+	//	alert("http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+ziddata+"&target_item_id=3&evid=49");
+		chrome.tabs.update({
+		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+ziddata+"&target_item_id=3&evid=49"
+		});
 	}
 )

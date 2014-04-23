@@ -4,6 +4,7 @@ var battleUrl="http://zc2.ayakashi.zynga.com/app.php?_c=battle";
 var battlehref = [];
 //var zid = [];
 var parIn = 0;
+var friendZid = [];
 //alert(zid[1]);
 //alert(geturl);
 	setTimeout(function(){
@@ -25,13 +26,17 @@ var parIn = 0;
 		}
 	},4000);
 	$(".button.mini").mouseover(function(){
-		if (geturl==FriendUrl){
-		zid[0]=$("button").attr("data-zid");
-		alert(zid[1]);
-		alert(zid);
+	//	if (geturl==FriendUrl){
+		$("[data-zid]").each(function(){
+		
+			friendZid =$(this).prop("data-zid");
+			alert("Q"+friendZid);
+			//alert(zid[1]);
+			//alert(zid);
 	//	var qq=zid.length;//zid 11 numbers
-		chrome.runtime.sendMessage(zid);
-		}
+	//	chrome.runtime.sendMessage(zid);
+			});
+		//}
 	});
 
 /*
