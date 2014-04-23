@@ -16,13 +16,12 @@ var parIn = 0;
 					var zid = [];
 					battlehref=$(this).parents("a").prop("href");
 					for(var i=94;i<=104;i++){
-//					zid = battlehref[94]+battlehref[95]+battlehref[96]+battlehref[97]+battlehref[98]+battlehref[99]+battlehref[100]+battlehref[101]+battlehref[102]+battlehref[103]+battlehref[104];
 					zid += battlehref[i];
 					}
 					alert(zid);
 				//	chrome.runtime.sendMessage(zid);
 				}
-			})
+			});
 		}
 	},4000);
 	$(".button.mini").mouseover(function(){
