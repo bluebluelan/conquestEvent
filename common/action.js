@@ -8,6 +8,11 @@ var friendZid = [];
 var ii=0
 //alert(zid[1]);
 //alert(geturl);
+
+/*	$(".remaining-time").children().css("color","#d84676");
+	$(".ribbon-title-top-right").css("color","#d84676").css("font-size","17px").text("可立刻交換");
+	$(".silver-apple").next().text("99999");
+	$(".gold-apple").next().text("99999");*/
 	setTimeout(function(){
 		if (geturl==battleUrl){
 			$("div.status").children().children(".defense-kiai").next("dd").each(function(){
@@ -26,23 +31,12 @@ var ii=0
 			});
 		}
 	},4000);
-	$(".button.mini").mouseover(function(){
-		if (geturl==FriendUrl){
-			$("button[data-zid]").each(function(){
+	$(".touch-button").click(function(){
+		$("button[data-zid]").each(function(){
 				friendZid[ii] =$(this).attr('data-zid')+"";
 			//	alert(friendZid);
 				ii++;
 		       // chrome.runtime.sendMessage(friendZid);
 			});
 			chrome.runtime.sendMessage(friendZid);
-		}
 	});
-
-/*
-$(function(){
-	$("#btn-guild-l").click(function(){
-	alert("QQQQ");
-	});
-});
-*/
-

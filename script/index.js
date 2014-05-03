@@ -1,5 +1,7 @@
 var ZDurl="http://zc2.ayakashi.zynga.com/app.php";
 var i=0;
+var zzid =33570018637;//Your ZID for Auto remove and add
+var utimestamp;
 var main_memu=[
 	{id:"battle",url:ZDurl+"?_c=battle"},
 	{id:"parts",url:ZDurl+"?_c=parts"},
@@ -16,6 +18,7 @@ var main_memu=[
 	{id:"merge",url:ZDurl+"?_c=merge"},
 	{id:"gacha",url:ZDurl+"?_c=gacha"}
 ];
+///////////////////////////////////Variable/////////////////////////////////////
 /*
 document.addEventListener(function () {
 	var data = chrome.extension.getBackgroundPage().ziddata;
@@ -26,9 +29,8 @@ document.addEventListener(function () {
 });*/
 $(function(){
 	$("#AutoFriend").click(function(){
-		chrome.tabs.update({
-			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true"
-		})
+		utimestamp = $.now();
+		alert(utimestamp);
 	});
 });
 $(function(){
@@ -38,15 +40,14 @@ $(function(){
 		$("#file").click()
 	});
 	$("#file").change(function(c){
+			i=0; //initial i = 0 while every login
 			if($("#BatchAddMode").prop("checked")){
-			//	alert("Zlogin");
 				Zlogin(c);
 			}
-			else if($("#AutoAddstatue").prop("checked")){
-				// HAVEN'T FINISH YET
+			else if($("#BatchRemove").prop("checked")){
+				loginRm(c);
 			}
 			else{
-			//	alert("SingleLogin");
 				Slogin(c);
 			}
 		}
@@ -121,8 +122,6 @@ $.ZDpost=function(c,d){
 			chrome.tabs.update({
 				url:a+ZJSESSIONID
 			})
-		//	alert("LoginSucc");
-		//	AFriend();
 		},
 		error:function(){
 			alert("登录失败")
@@ -138,8 +137,8 @@ function ZDdecode(d){
 	var g=f.split(",");
 	return g
 };
+/////////////////////////////////////////FUNCTION////////////////////////////////////////////
 function Zlogin(zid){
-	//alert("fileNumber="+zid.target.files.length);//num of zynga.properties
 	if(i>zid.target.files.length){
 		return;
 	}
@@ -154,7 +153,7 @@ function Zlogin(zid){
 		AFriend();
 	}
 	i=i+1;
-	setTimeout(function(){Zlogin(zid);},10000);
+	setTimeout(function(){Zlogin(zid);},5000);
 };
 function Slogin(zid){
 	if(i>zid.target.files.length){
@@ -170,12 +169,34 @@ function Slogin(zid){
 		$.ZDpost(uuid,udid)
 	}
 };
+function loginRm(zid){
+	if(i>zid.target.files.length){
+		return;
+	}
+	var d=zid.target.files[i];//load zynga.properties 
+	var b=new FileReader();
+	b.readAsText(d);
+	b.onload=function(f){
+		textList=ZDdecode(f.target.result);
+		uuid=textList[0];
+		udid=textList[1];
+		$.ZDpost(uuid,udid)
+		RMFriend();
+	}
+	i=i+1;
+	setTimeout(function(){loginRm(zid);},5000);
+};
 function AFriend(){
-//	alert("Enter AFriend");
 	setTimeout(function(){
-	//	alert("CountDown 5s and Add Friend");
 		chrome.tabs.update({
-			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id=33570018637&is_json=true"
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id="+zzid+"&is_json=true&_="+$.now()
 		})
-	},5000);
+	},2000);
+};
+function RMFriend(){
+	setTimeout(function(){
+		chrome.tabs.update({
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=friend&action=remove_friend&zid="+zzid
+		})
+	},2000);
 };
