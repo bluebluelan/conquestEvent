@@ -1,6 +1,6 @@
 body{min-width:787px;overflow-x:hidden}ul,li{list-style-type:none}
 .img{margin:0px;border:0px solid black;vertical-align:middle;width:50px;height:43px}label{font-size:30px;font-weight:bold;color:#00ff7f}
-.background{background:url("../image/background.jpg") no-repeat scroll 0 0;height:726px}
+.background{background:url("../image/background.jpg") no-repeat scroll 0 0;height:500px}
 .login{padding:195px 50px;text-align:center;width:300px}
 .login .td_right{color:#800080;font-size:30px;font-weight:bold;width:140px}
 .button{background:none repeat scroll 0 0 #ffcc18;border-radius:2px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:18px;padding:0 18px}

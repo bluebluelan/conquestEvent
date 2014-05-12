@@ -1,6 +1,10 @@
 var ZDurl="http://zc2.ayakashi.zynga.com/app.php";
 var i=0;
-var zzid =33570018637;//Your ZID for Auto remove and add
+var pag;
+var tutorial_step="";
+var step=[];
+//var zzid = 33603919189;//Your ZID for Auto remove and add
+var zzid = 33570018637;
 var utimestamp;
 var main_memu=[
 	{id:"battle",url:ZDurl+"?_c=battle"},
@@ -30,7 +34,12 @@ document.addEventListener(function () {
 $(function(){
 	$("#AutoFriend").click(function(){
 		utimestamp = $.now();
-		alert(utimestamp);
+		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+			tutorial_step=tabs[0].url;
+		})
+		step=tutorial_step.match(/tutorial_step=(\d.)/);
+		pag=parseInt(step[1]);
+		tutorial();
 	});
 });
 $(function(){
@@ -46,6 +55,9 @@ $(function(){
 			}
 			else if($("#BatchRemove").prop("checked")){
 				loginRm(c);
+			}
+			else if($("#BatchTutorial").prop("checked")){
+				loginTutorial(c);
 			}
 			else{
 				Slogin(c);
@@ -153,7 +165,7 @@ function Zlogin(zid){
 		AFriend();
 	}
 	i=i+1;
-	setTimeout(function(){Zlogin(zid);},5000);
+	setTimeout(function(){Zlogin(zid);},8000);
 };
 function Slogin(zid){
 	if(i>zid.target.files.length){
@@ -184,19 +196,57 @@ function loginRm(zid){
 		RMFriend();
 	}
 	i=i+1;
-	setTimeout(function(){loginRm(zid);},5000);
+	setTimeout(function(){loginRm(zid);},8000);
+};
+function loginTutorial(zid){
+	if(i>zid.target.files.length){
+		return;
+	}
+	var d=zid.target.files[i];//load zynga.properties 
+	var b=new FileReader();
+	b.readAsText(d);
+	b.onload=function(f){
+		textList=ZDdecode(f.target.result);
+		uuid=textList[0];
+		udid=textList[1];
+		$.ZDpost(uuid,udid)
+		pag=3;
+		tutorial();
+	};
+	i=i+1;
+    setTimeout(function(){loginTutorial(zid);},80000);
 };
 function AFriend(){
 	setTimeout(function(){
 		chrome.tabs.update({
 			url:"http://zc2.ayakashi.zynga.com/app.php?_c=WebNeighbor&action=sendNeighborRequest&user_id="+zzid+"&is_json=true&_="+$.now()
 		})
-	},2000);
+	},4000);
 };
 function RMFriend(){
 	setTimeout(function(){
 		chrome.tabs.update({
 			url:"http://zc2.ayakashi.zynga.com/app.php?_c=friend&action=remove_friend&zid="+zzid
 		})
-	},2000);
+	},4000);
+};
+/*function ggetUrl(){
+	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+		tutorial_step=tabs[0].url;
+	})
+	step=tutorial_step.match(/tutorial_step=(\d.)/);
+	pag=parseInt(step[1]);
+	alert(pag);
+	tutorial();
+};*/
+function tutorial(){
+	if(pag>39){
+		//pag=3;
+		return;
+	}
+	chrome.tabs.update({
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=tutorial&action=next&tutorial_step="+pag
+	})
+	pag=pag+1;
+	setTimeout(function(){tutorial();},2000);
 };

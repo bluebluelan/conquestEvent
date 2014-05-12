@@ -33,5 +33,5 @@ function AutoPoke(fileArr){
 	qq=qq+1;
 	setTimeout(function(){
 		AutoPoke(fileArr);
-	},1500);
+	},1000);
 };

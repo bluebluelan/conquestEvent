@@ -13,6 +13,7 @@ var ii=0
 	$(".ribbon-title-top-right").css("color","#d84676").css("font-size","17px").text("可立刻交換");
 	$(".silver-apple").next().text("99999");
 	$(".gold-apple").next().text("99999");*/
+// AutoAttack Opponent defense-spirit below 40 ++ 
 	setTimeout(function(){
 		if (geturl==battleUrl){
 			$("div.status").children().children(".defense-kiai").next("dd").each(function(){
@@ -25,18 +26,17 @@ var ii=0
 					for(var i=94;i<=104;i++){
 					zid += battlehref[i];
 					}
-					alert(zid);
+				//	alert(zid);
 				//	chrome.runtime.sendMessage(zid);
 				}
 			});
 		}
 	},4000);
+// AutoAttack Opponent defense-spirit below 40 --
 	$(".touch-button").click(function(){
 		$("button[data-zid]").each(function(){
 				friendZid[ii] =$(this).attr('data-zid')+"";
-			//	alert(friendZid);
 				ii++;
-		       // chrome.runtime.sendMessage(friendZid);
 			});
 			chrome.runtime.sendMessage(friendZid);
 	});
