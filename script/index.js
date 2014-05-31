@@ -3,8 +3,23 @@ var i=0;
 var pag;
 var tutorial_step="";
 var step=[];
-//var zzid = 33603919189;//Your ZID for Auto remove and add
-var zzid = 33570018637;
+var cardd='';
+var cardsetInit=[]
+var cardset	=[];
+var cardset1=[10821,9897,18509,20266,5553];
+var cardset2=[6488,9897,18509,20266,5553];
+var cardset3=[8965,22485,5489,5605,5521];
+var cardset4=[19760,23417,10821,25493,47];
+var cardset5=[9894,23417,23172,25493,19760];
+var zzid = 33603919189;//Your ZID for Auto remove and add*/
+//cardset第一個為隊長編號 其餘四個任意排列皆可
+//點擊即可更換排組
+/*var cardset1=[8974,15229,12552,11360,11247];
+var cardset2=[5202,8663,8835,15229,11247];
+var cardset3=[7620,17474,12552,11360,11247];
+var cardset4=[8974,14690,3928,58,20750];
+var cardset5=[8352,3928,9748,15505,14690];
+var zzid = 33570018637;//*/
 var utimestamp;
 var main_memu=[
 	{id:"battle",url:ZDurl+"?_c=battle"},
@@ -31,15 +46,97 @@ document.addEventListener(function () {
 //		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+data
 	})
 });*/
-$(function(){
+/*$(function(){
 	$("#AutoFriend").click(function(){
 		utimestamp = $.now();
 		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 			tutorial_step=tabs[0].url;
 		})
-		step=tutorial_step.match(/tutorial_step=(\d.)/);
+		alert(cardset1[0]);
+		step=tutorial_step.match(/tutorial_step=(\d.)/);	
 		pag=parseInt(step[1]);
-		tutorial();
+	//    tutorial();
+	});
+});*/
+$(function(){
+	$("button.card_button").click(function(){
+		cardd = $(this).prop('id');
+		if(cardd == "cardset1"){
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+				})
+			},1000);
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset1[0]+"&_c=monster&action=setLeader"
+				})
+			},2000);
+			pag=1;
+			setTimeout(function(){changeCardset(cardset1);},3000);
+		}
+		else if(cardd == "cardset2"){
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+				})
+			},1000);
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset2[0]+"&_c=monster&action=setLeader"
+				})
+			},2000);
+			pag=1;
+			setTimeout(function(){changeCardset(cardset2);},3000);
+		}
+		else if(cardd == "cardset3"){
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+				})
+			},1000);
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset3[0]+"&_c=monster&action=setLeader"
+				})
+			},2000);
+			pag=1;
+			setTimeout(function(){changeCardset(cardset3);},3000);
+		}
+		else if(cardd == "cardset4"){
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+				})
+			},1000);
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset4[0]+"&_c=monster&action=setLeader"
+				})
+			},2000);
+			pag=1;
+			setTimeout(function(){changeCardset(cardset4);},3000);
+		}
+		else if(cardd == "cardset5"){
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+				})
+			},1000);
+			setTimeout(function(){
+				chrome.tabs.update({
+					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset5[0]+"&_c=monster&action=setLeader"
+				})
+			},2000);
+			pag=1;
+			setTimeout(function(){changeCardset(cardset5);},3000);
+		}
+		else{
+			alert("QOO");
+		}
+	//	step=tutorial_step.match(/tutorial_step=(\d.)/);	
+	//	pag=parseInt(step[1]);
+	//  tutorial();
 	});
 });
 $(function(){
@@ -51,13 +148,13 @@ $(function(){
 	$("#file").change(function(c){
 			i=0; //initial i = 0 while every login
 			if($("#BatchAddMode").prop("checked")){
-				Zlogin(c);
+				setTimeout(function(){Zlogin(c);},3000);
 			}
 			else if($("#BatchRemove").prop("checked")){
-				loginRm(c);
+				setTimeout(function(){loginRm(c);},3000);
 			}
 			else if($("#BatchTutorial").prop("checked")){
-				loginTutorial(c);
+				setTimeout(function(){loginTutorial(c);},3000);
 			}
 			else{
 				Slogin(c);
@@ -136,7 +233,7 @@ $.ZDpost=function(c,d){
 			})
 		},
 		error:function(){
-			alert("登录失败")
+		//	alert("登录失败")
 		}
 	})
 };
@@ -249,4 +346,15 @@ function tutorial(){
 	})
 	pag=pag+1;
 	setTimeout(function(){tutorial();},2000);
+};
+function changeCardset(cardsetInit){
+	if(pag>4){
+		//pag=3;
+		return;
+	}
+	chrome.tabs.update({
+				url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardsetInit[pag]+"&list_type=offense&_c=monster&action=setOdMonster"
+	})
+	pag=pag+1;
+	setTimeout(function(){changeCardset(cardsetInit);},1000);
 };

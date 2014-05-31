@@ -18,10 +18,30 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
 		ziddata=request;
-		AutoPoke(ziddata);
+		if(request.type=="SEBS"){
+			AutoAttack(request.data/*,request.item*/);
+		}
+		if(request.type=="poke"){
+			AutoPoke(request.data);
+		}
+	//	AutoPoke(ziddata);
+	//	AutoAttack(ziddata);
+	//	AutoAccept(ziddata);
 	}
 )
-
+function AutoAccept(fileArr){
+	chrome.tabs.create({
+		//	 http://zc2.ayakashi.zynga.com/app.php?_c=ZJWebMessageCenter&action=syncAcceptEvent&event_id=8818253845374204ee922e&action_key=onNeighborAccepted&is_json=true&_=1400244636820
+		url:"http://zc2.ayakashi.zynga.com/app.php?_c=ZJWebMessageCenter&action=syncAcceptEvent&event_id="+fileArr+"&action_key=onNeighborAccepted&is_json=true&_="+$.now()
+	});
+};
+function AutoAttack(fileArr/*,itemid*/){
+	//alert(fileArr);
+	chrome.tabs.update({
+		url:"http://zc2.ayakashi.zynga.com/app.php?_c=pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id=53&evid=53"
+//		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id="+itemid+"&evid=52"
+	})
+};
 function AutoPoke(fileArr){
 	var ziddata=fileArr[qq];
 	if(qq>=fileArr.length){
