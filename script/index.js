@@ -6,19 +6,19 @@ var step=[];
 var cardd='';
 var cardsetInit=[]
 var cardset	=[];
-var cardset1=[10821,9897,18509,20266,5553];
+/*var cardset1=[10821,9897,18509,20266,5553];
 var cardset2=[6488,9897,18509,20266,5553];
 var cardset3=[8965,22485,5489,5605,5521];
 var cardset4=[19760,23417,10821,25493,47];
-var cardset5=[9894,23417,23172,25493,19760];
+var cardset5=[22877,23417,23172,25493,19760];
 var zzid = 33603919189;//Your ZID for Auto remove and add*/
 //cardset第一個為隊長編號 其餘四個任意排列皆可
 //點擊即可更換排組
-/*var cardset1=[8974,15229,12552,11360,11247];
+var cardset1=[8974,15229,12552,11360,11247];
 var cardset2=[5202,8663,8835,15229,11247];
 var cardset3=[7620,17474,12552,11360,11247];
 var cardset4=[8974,14690,3928,58,20750];
-var cardset5=[8352,3928,9748,15505,14690];
+var cardset5=[18309,3928,9748,15505,14690];
 var zzid = 33570018637;//*/
 var utimestamp;
 var main_memu=[
@@ -57,10 +57,30 @@ document.addEventListener(function () {
 		pag=parseInt(step[1]);
 	//    tutorial();
 	});
+});
+$(function(){
+	if($("#BatchCard").prop("checked")){
+		alert("small");
+		cardset1=[10821,9897,18509,20266,5553];
+		cardset2=[6488,9897,18509,20266,5553];
+		cardset3=[8965,22485,5489,5605,5521];
+		cardset4=[19760,23417,10821,25493,47];
+		cardset5=[22877,23417,23172,25493,19760];	
+	}
+	else{
+		
+	}
 });*/
 $(function(){
 	$("button.card_button").click(function(){
 		cardd = $(this).prop('id');
+		if($("#BatchCard").prop("checked")){
+			cardset1=[10821,9897,18509,20266,5553];
+			cardset2=[6488,9897,18509,20266,5553];
+			cardset3=[8965,22485,5489,5605,5521];
+			cardset4=[19760,23417,10821,25493,47];
+			cardset5=[22877,23417,23172,25493,19760];	
+		}
 		if(cardd == "cardset1"){
 			setTimeout(function(){
 				chrome.tabs.update({
