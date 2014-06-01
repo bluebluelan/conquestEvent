@@ -6,12 +6,7 @@ var step=[];
 var cardd='';
 var cardsetInit=[]
 var cardset	=[];
-/*var cardset1=[10821,9897,18509,20266,5553];
-var cardset2=[6488,9897,18509,20266,5553];
-var cardset3=[8965,22485,5489,5605,5521];
-var cardset4=[19760,23417,10821,25493,47];
-var cardset5=[22877,23417,23172,25493,19760];
-var zzid = 33603919189;//Your ZID for Auto remove and add*/
+//var zzid = 33603919189;//Your ZID for Auto remove and add*/
 //cardset第一個為隊長編號 其餘四個任意排列皆可
 //點擊即可更換排組
 var cardset1=[8974,15229,12552,11360,11247];
