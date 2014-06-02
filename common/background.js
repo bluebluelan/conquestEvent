@@ -45,6 +45,7 @@ function AutoAttack(fileArr/*,itemid*/){
 function AutoPoke(fileArr){
 	var ziddata=fileArr[qq];
 	if(qq>=fileArr.length){
+		qq=0;
 		return;
 	}
 	chrome.tabs.update({
