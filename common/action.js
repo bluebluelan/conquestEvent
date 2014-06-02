@@ -31,7 +31,7 @@ var isBattlelist;
 	});
 });*/
 isBattlelist=geturl.match(/battle_list/);
-setInterval(function(){
+/*setInterval(function(){
 	if (isBattlelist=="battle_list"){
 		//alert($("a#update-battle-list").text());
 	//	searchenemybyspirit();
@@ -44,7 +44,7 @@ setInterval(function(){
 		});
 	}
 		// auto accept friend--
-},1000);
+},1000);*/
 //////////////////////////////function//////////////////////
 function searchenemybyspirit(){
 //	item_id=geturl.match(/target_item_id\=(\d+)/);
