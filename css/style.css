@@ -1,10 +1,91 @@
-.index{min-width:420px;width:420px;min-height:490px;overflow-x:hidden;text-align:center}
-.index .indeximg{margin-top:12px; margin-bottom:0px; margin-left:5px; border:0px solid black;vertical-align:middle;width:68px;height:55px}
-.index .index_label{color:#000}
-.index .file{height:0px;border:10px margin-left:0px;opacity:0;position:absolute;width:0px}
-.index .file_button{background:url('../image/button.jpg') no-repeat scroll 0 0;border:0 none;height:28px;width:137px;color:#FFF;cursor:pointer;font-weight:bolder;border-radius:5px}
-.drop_input{background:none repeat scroll 0 0 #FFF;height:0px;margin-left:50px;width:0px}
-.drop_input span{line-height:100px;color:#FFF;font-weight:bold;font-size:20px}
-.index_input{margin-top:25px}
-.index .text_input{border:1px solid #ccc;height:20px;line-height:20px}
-.main_memu{background:url('../image/aya.png')no-repeat 0 0;height:201px;width:430px; margin-left:-4px; margin-bottom:0px; margin-top:250px}
+.index{
+	min-width:320px;
+	width:422px;
+	min-height:300px;
+	overflow-x:hidden;
+	text-align:center
+}
+.index .indeximg{
+	margin-top:10px; 
+	margin-bottom:0px; 
+	border:0px;
+	padding-left:10px;
+	vertical-align:middle;
+	width:75px;
+	height:60px
+}
+.index .file{
+	height:0px;
+	border:10px margin-left:0px;o
+	pacity:0;
+	position:absolute;
+	width:0px
+}
+.index .index_input{
+	background:url('../image/inputbg.jpg');
+	no-repeat scroll 0 0;
+	border:0
+}
+.index .file_button{
+	background:none
+	no-repeat scroll 0 0;
+	border:0 none;
+	height:28px;
+	width:137px;
+	color:#FFF;
+	cursor:pointer;
+	font-weight:bolder;
+	border-radius:0px
+}
+.index .checkbx{
+	background:url('../image/cbxbg.jpg')
+	repeat scroll 0 0;
+	border:0;
+}
+.index_input{
+	margin-top:28px
+}
+.index .text_input{
+	border:0px solid #ccc;
+	height:20px;
+	line-height:20px
+}
+.main_memu{
+	background:url('../image/aya.png') no-repeat 0 0;
+	height:201px;
+	width:430px; 
+	margin-left:-4px; 
+	margin-bottom:0px; 
+	margin-top:200px
+}
+.card_button {
+	font-size:12px;
+	font-family:Arial;
+	font-weight:normal;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	border:1px solid #dcdcdc;
+	padding:5px 11px;
+	text-decoration:none;
+	background:-moz-linear-gradient( center top, #ffffff 5%, #f6f6f6 100% );
+	background:-ms-linear-gradient( top, #ffffff 5%, #f6f6f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6');
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #ffffff), color-stop(100%, #f6f6f6) );
+	background-color:#ffffff;
+	color:#666666;
+	display:inline-block;
+	text-shadow:1px 1px 0px #ffffff;
+ 	-webkit-box-shadow:inset 1px 1px 0px 0px #ffffff;
+ 	-moz-box-shadow:inset 1px 1px 0px 0px #ffffff;
+ 	box-shadow:inset 1px 1px 0px 0px #ffffff;
+}.card_button:hover {
+	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
+	background:-ms-linear-gradient( top, #f6f6f6 5%, #ffffff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #f6f6f6), color-stop(100%, #ffffff) );
+	background-color:#f6f6f6;
+}.card_button:active {
+	position:relative;
+	top:1px;
+}
