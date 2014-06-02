@@ -1,6 +1,6 @@
 .index{
 	min-width:320px;
-	width:422px;
+	width:410px;
 	min-height:300px;
 	overflow-x:hidden;
 	text-align:center
@@ -25,19 +25,26 @@
 }
 .index .file{
 	height:0px;
-	border:10px margin-left:0px;o
-	pacity:0;
+	border:10px; 
+	margin-left:-10px;
+	margin-right:-10px;
+	opacity:0;
 	position:absolute;
 	width:0px
 }
 .index .index_input{
 	background:url('../image/inputbg.jpg');
+	margin-left:-10px; 
+	margin-right:-10px;
+	margin-top:10px; 	
 	no-repeat scroll 0 0;
 	border:0
 }
 .index .file_button{
 	background:none
 	no-repeat scroll 0 0;
+	margin-left:-10px; 
+	margin-right:-10px;
 	border:0 none;
 	height:28px;
 	width:137px;
@@ -48,6 +55,8 @@
 .index .checkbx{
 	background:url('../image/cbxbg.jpg')
 	repeat scroll 0 0;
+	margin-left:-10px;
+	margin-right:-10px; 
 	border:0;
 }
 .index_input{
@@ -62,7 +71,7 @@
 	background:url('../image/aya.png') no-repeat 0 0;
 	height:201px;
 	width:430px; 
-	margin-left:-4px; 
+	margin-left:-10px; 
 	margin-bottom:0px; 
 	margin-top:200px
 }
@@ -70,6 +79,7 @@
 	font-size:12px;
 	font-family:Arial;
 	font-weight:normal;
+	margin-top:5px; 
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	border-radius:8px;

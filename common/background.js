@@ -21,14 +21,23 @@ chrome.runtime.onMessage.addListener(
 		if(request.type=="SEBS"){
 			AutoAttack(request.data/*,request.item*/);
 		}
-		if(request.type=="poke"){
+		else if(request.type=="poke"){
 			AutoPoke(request.data);
+		}
+		else if(request.type=="ExtraEventBoss"){
+			AutoPopUp(request.data);
 		}
 	//	AutoPoke(ziddata);
 	//	AutoAttack(ziddata);
 	//	AutoAccept(ziddata);
 	}
 )
+/////////////////////////////////function//////////////////////////////
+function AutoPopUp(fileArr){
+	chrome.tabs.create({
+		url:"http://zc2.ayakashi.zynga.com/app.php?battle_id="+fileArr+"&encounter_battle_mode=1&evid=54&_c=extra_quest_event_npc_battle&action=confirm"
+	});
+};
 function AutoAccept(fileArr){
 	chrome.tabs.create({
 		//	 http://zc2.ayakashi.zynga.com/app.php?_c=ZJWebMessageCenter&action=syncAcceptEvent&event_id=8818253845374204ee922e&action_key=onNeighborAccepted&is_json=true&_=1400244636820
