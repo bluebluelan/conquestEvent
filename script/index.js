@@ -41,7 +41,7 @@ document.addEventListener(function () {
 //		url:"http://zc2.ayakashi.zynga.com/app.php?_c=player&action=visit&zid="+data
 	})
 });*/
-/*$(function(){
+$(function(){
 	$("#AutoFriend").click(function(){
 		utimestamp = $.now();
 		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
@@ -50,7 +50,7 @@ document.addEventListener(function () {
 		alert(cardset1[0]);
 		step=tutorial_step.match(/tutorial_step=(\d.)/);	
 		pag=parseInt(step[1]);
-	//    tutorial();
+	    tutorial();
 	});
 });
 $(function(){
@@ -65,7 +65,7 @@ $(function(){
 	else{
 		
 	}
-});*/
+});
 $(function(){
 	$("button.card_button").click(function(){
 		cardd = $(this).prop('id');
@@ -149,9 +149,6 @@ $(function(){
 		else{
 			alert("QOO");
 		}
-	//	step=tutorial_step.match(/tutorial_step=(\d.)/);	
-	//	pag=parseInt(step[1]);
-	//  tutorial();
 	});
 });
 $(function(){
@@ -342,7 +339,7 @@ function RMFriend(){
 		})
 	},4000);
 };
-/*function ggetUrl(){
+function ggetUrl(){
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 		tutorial_step=tabs[0].url;
 	})
@@ -350,7 +347,7 @@ function RMFriend(){
 	pag=parseInt(step[1]);
 	alert(pag);
 	tutorial();
-};*/
+};
 function tutorial(){
 	if(pag>39){
 		//pag=3;

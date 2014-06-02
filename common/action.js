@@ -31,20 +31,20 @@ var isBattlelist;
 	});
 });*/
 isBattlelist=geturl.match(/battle_list/);
-/*setInterval(function(){
+setInterval(function(){
 	if (isBattlelist=="battle_list"){
-		//alert($("a#update-battle-list").text());
-	//	searchenemybyspirit();
+		alert($("a#update-battle-list").text());
+		searchenemybyspirit();
 	}
 	// auto accept friend++
 	if(geturl==AcceptUrl){
 		$("ul#events-27006").children().each(function(){
-	//		$("a.button.sub.accept.ok").click();
-	//		chrome.runtime.sendMessage($(this).attr("eid"));
+			$("a.button.sub.accept.ok").click();
+			chrome.runtime.sendMessage($(this).attr("eid"));
 		});
 	}
 		// auto accept friend--
-},1000);*/
+},1000);
 //////////////////////////////function//////////////////////
 function searchenemybyspirit(){
 //	item_id=geturl.match(/target_item_id\=(\d+)/);
