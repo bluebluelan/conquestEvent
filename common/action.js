@@ -18,21 +18,18 @@ var isExtraEvent;
 	$(".silver-apple").next().text("99999");
 	$(".gold-apple").next().text("99999");*/
 ////////////////////////////////////////////////////////////////////////////	
-//alert(ii);
-//alert(geturl);
-//alert(zid[1]);
 //alert($("a#update-battle-list").text());
-
 	$(".button.mini").mouseover(function(){
-		alert("poke");
-		$("button[data-zid]").each(function(){
-			alert(ii);
-			friendZid[ii] =$(this).attr('data-zid')+"";
-			ii++;
-		});
-		chrome.runtime.sendMessage(type:"poke",data:friendZid);
+		if (geturl==FriendUrl){
+			$("button[data-zid]").each(function(){
+				friendZid[ii] =$(this).attr('data-zid')+"";
+			//	alert(friendZid);
+				ii++;
+		       // chrome.runtime.sendMessage(friendZid);
+			});
+			chrome.runtime.sendMessage(friendZid);
+		}
 	});
-
 isBattlelist=geturl.match(/battle_list/);
 isExtraEvent=geturl.match(/extra_quest_event_adventure/);
 setTimeout(function(){

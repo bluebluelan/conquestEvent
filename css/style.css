@@ -1,9 +1,17 @@
 .index{
 	min-width:320px;
 	width:410px;
-	min-height:300px;
+	min-height:250px;
 	overflow-x:hidden;
 	text-align:center
+}
+.index .index_logo{
+	background:url('../image/index.jpg');
+	text-shadow:1px 1px 0px #000000;
+	margin-top:-8px; 
+	margin-left:-10px; 
+	margin-right:-10px;
+	font-size:20px;
 }
 .index .indeximg{
 	margin-top:10px; 
@@ -36,7 +44,7 @@
 	background:url('../image/inputbg.jpg');
 	margin-left:-10px; 
 	margin-right:-10px;
-	margin-top:10px; 	
+	margin-top:0px; 	
 	no-repeat scroll 0 0;
 	border:0
 }
@@ -73,7 +81,7 @@
 	width:430px; 
 	margin-left:-10px; 
 	margin-bottom:0px; 
-	margin-top:200px
+	margin-top:250px
 }
 .card_button {
 	font-size:12px;
