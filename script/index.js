@@ -9,8 +9,8 @@ var cardset	=[];
 //var zzid = 33603919189;//Your ZID for Auto remove and add*/
 //cardset第一個為隊長編號 其餘四個任意排列皆可
 //點擊即可更換排組
-var cardset1=[8974,15229,12552,11360,11247];
-var cardset2=[5202,8663,8835,15229,11247];
+var cardset1=[8543,8223,12552,11360,11247];
+var cardset2=[22196,8223,11360,12552,11247];
 var cardset3=[7620,17474,12552,11360,11247];
 var cardset4=[8974,14690,3928,58,20750];
 var cardset5=[18309,3928,9748,15505,14690];
@@ -92,39 +92,39 @@ $(function(){
 	$("button.card_button").click(function(){
 		cardd = $(this).prop('id');
 		if($("#BatchCard").prop("checked")){
-			cardset1=[10821,9897,18509,20266,5553];
-			cardset2=[6488,9897,18509,20266,5553];
+			cardset1=[5553,5490,5521,5489,5605];
+			cardset2=[17633,5490,5521,5489,5605];
 			cardset3=[8965,22485,5489,5605,5521];
 			cardset4=[19760,23417,10821,25493,47];
 			cardset5=[22877,23417,23172,25493,19760];	
 		}
 		if(cardd == "cardset1"){
-			setTimeout(function(){
+		/*	setTimeout(function(){
 				chrome.tabs.update({
 					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
 				})
-			},1000);
+			},1000);*/
 			setTimeout(function(){
 				chrome.tabs.update({
 					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset1[0]+"&_c=monster&action=setLeader"
 				})
-			},2000);
+			},1000);
 			pag=1;
-			setTimeout(function(){changeCardset(cardset1);},3000);
+		//	setTimeout(function(){changeCardset(cardset1);},3000);
 		}
 		else if(cardd == "cardset2"){
-			setTimeout(function(){
+		/*	setTimeout(function(){
 				chrome.tabs.update({
 					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
 				})
-			},1000);
+			},1000);*/
 			setTimeout(function(){
 				chrome.tabs.update({
 					url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardset2[0]+"&_c=monster&action=setLeader"
 				})
-			},2000);
+			},1000);
 			pag=1;
-			setTimeout(function(){changeCardset(cardset2);},3000);
+		//	setTimeout(function(){changeCardset(cardset2);},3000);
 		}
 		else if(cardd == "cardset3"){
 			setTimeout(function(){
@@ -278,6 +278,7 @@ function ZDdecode(d){
 	var c=CryptoJS.enc.Utf8.parse("zynga.properties");
 	var a=CryptoJS.AES.decrypt({ciphertext:CryptoJS.enc.Latin1.parse(b)},e,{keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
 	var f=a.toString(CryptoJS.enc.Utf8);
+	console.log(f)
 	var g=f.split(",");
 	return g
 };
@@ -385,9 +386,9 @@ function tutorial(){
 };
 function refresh(urlnow){
 	chrome.tabs.update({
-			url:"http://zc2.ayakashi.zynga.com/app.php?_c=extra_quest_event_adventure&action=proceed&island_id=1&area_id=41&stage_id=201&evid=54&newest=1&_="+$.now()
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=battle&action=battle_list"
 	})
-	setTimeout(function(){refresh(urlnow);},2000);
+	setTimeout(function(){refresh(urlnow);},5000);
 };
 function changeCardset(cardsetInit){
 	if(pag>4){

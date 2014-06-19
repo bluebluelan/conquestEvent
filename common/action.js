@@ -73,14 +73,13 @@ function searchenemybyspirit(){
 	$("div.status").children().children(".defense-kiai").next("dd").each(function(){
 				parIn = parseInt($(this).text(),10);
 			//	alert($(this).parents("a").prop("href"));
-				if(parIn<300){
+				if(parIn<40){
 			//		alert(parIn);
 					var zid = [];
 					battlehref=$(this).parents("a").prop("href");
 					zid=battlehref.match(/target_user_id\=(\d{11})/);
 					console.log(zid[1]);
-					//alert(zid[1]);
-					chrome.runtime.sendMessage({type: "SEBS",data: zid[1]});
+					chrome.runtime.sendMessage({type:"SEBS", data: zid[1]});
 				}
 			});
 
