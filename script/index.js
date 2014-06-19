@@ -215,10 +215,10 @@ $.ZDpost=function(c,d){
 	var g="Mozilla/5.0 ZMTransaction/1.0";
 	var e={
 		headers:{
-			device_model:"GT-I9300",
+			device_model:"GT-I9100",
 			device_family:"Android",
 			batch_format_version:"1",
-			bundle_version:"2.7.2",
+			bundle_version:"1.7.0",
 			device_name:"Android",
 			userKey:c,
 			device_type:"4",
@@ -226,7 +226,7 @@ $.ZDpost=function(c,d){
 			bundle_identifier:"com.zynga.zjayakashi",
 			udid:d,
 			batch_sequence:0,
-			os_version:"4.2.2"
+			os_version:"2.3.4"
 		},
 		transactions:{
 			"0":{

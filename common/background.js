@@ -1,4 +1,4 @@
-var ZG_UA='Mozilla/5.0 (Linux; U; Android 4.2.2; zh-tw; GT-I9300 Build/JDQ39) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 ZyngaBundleIdentifier/com.zynga.zjayakashi ZyngaBundleVersion/2.7.2';
+var ZG_UA='Mozilla/5.0 (Linux; U; Android 2.3.4; zh-cn; GT-I9100 Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 ZyngaBundleIdentifier/com.zynga.zjayakashi ZyngaBundleVersion/1.7.0';
 var ziddata = {};
 var qq=0;
 chrome.webRequest.onBeforeSendHeaders.addListener(
