@@ -14,7 +14,7 @@ var cardset2=[5202,8663,8835,15229,11247];
 var cardset3=[7620,17474,12552,11360,11247];
 var cardset4=[8974,14690,3928,58,20750];
 var cardset5=[18309,3928,9748,15505,14690];
-var zzid = 33570018637;//*/
+var zzid = 33570018637;
 var utimestamp;
 var main_memu=[
 	{id:"battle",url:ZDurl+"?_c=battle"},
@@ -47,21 +47,43 @@ $(function(){
 		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 			tutorial_step=tabs[0].url;
 		})
-		alert(cardset1[0]);
+		alert(tutorial_step);
 		step=tutorial_step.match(/tutorial_step=(\d.)/);	
 		pag=parseInt(step[1]);
 	    tutorial();
 	});
 });
 $(function(){
+	$("#Refresh").click(function(){
+		utimestamp = $.now();
+		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+			tutorial_step=tabs[0].url;
+		})
+		refresh(tutorial_step);
+	});
+});
+$(function(){
 	if($("#BatchCard").prop("checked")){
 		alert("small");
+		zzid = 33603919189;
 		cardset1=[10821,9897,18509,20266,5553];
 		cardset2=[6488,9897,18509,20266,5553];
 		cardset3=[8965,22485,5489,5605,5521];
 		cardset4=[19760,23417,10821,25493,47];
 		cardset5=[22877,23417,23172,25493,19760];	
 	}
+	else{
+		
+	}
+});
+$(function(){
+	if($("#BatchTutorial").prop("checked")){
+		alert("small");
+		cardset1=[21365,6010,6021,5985,6025];
+		cardset2=[15286,11434,19773,6010,6021];
+		cardset3=[14777,11434,19773,21365,15286];
+		var cardset4=[11434,19773,6822,1377,21365];
+		}
 	else{
 		
 	}
@@ -193,18 +215,18 @@ $.ZDpost=function(c,d){
 	var g="Mozilla/5.0 ZMTransaction/1.0";
 	var e={
 		headers:{
-			device_model:"GT-I9100",
+			device_model:"GT-I9300",
 			device_family:"Android",
 			batch_format_version:"1",
-			bundle_version:"1.7.0",
+			bundle_version:"2.7.2",
 			device_name:"Android",
 			userKey:c,
 			device_type:"4",
-			locale:"zh_CN",
+			locale:"zh_TW",
 			bundle_identifier:"com.zynga.zjayakashi",
 			udid:d,
 			batch_sequence:0,
-			os_version:"2.3.4"
+			os_version:"4.2.2"
 		},
 		transactions:{
 			"0":{
@@ -245,12 +267,13 @@ $.ZDpost=function(c,d){
 			})
 		},
 		error:function(){
-		//	alert("登录失败")
+			console.log("登录失败")
 		}
 	})
 };
 function ZDdecode(d){
-	var b=atob(d);
+	var b=atob(d);// ascii to binary
+	//console.log("b="+CryptoJS.enc.Latin1.parse(b));
 	var e=CryptoJS.enc.Hex.parse("0bf116e3b67f80a8b00b6489b416343cb8647ef1adc17516245967325cd41d2b");
 	var c=CryptoJS.enc.Utf8.parse("zynga.properties");
 	var a=CryptoJS.AES.decrypt({ciphertext:CryptoJS.enc.Latin1.parse(b)},e,{keySize:256/8,iv:c,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
@@ -294,7 +317,8 @@ function loginRm(zid){
 	if(i>zid.target.files.length){
 		return;
 	}
-	var d=zid.target.files[i];//load zynga.properties 
+	var d=zid.target.files[i];//load zynga.properties
+	console.log(d.name);
 	var b=new FileReader();
 	b.readAsText(d);
 	b.onload=function(f){
@@ -350,7 +374,7 @@ function ggetUrl(){
 };
 function tutorial(){
 	if(pag>39){
-		//pag=3;
+		pag=3;
 		return;
 	}
 	chrome.tabs.update({
@@ -358,6 +382,12 @@ function tutorial(){
 	})
 	pag=pag+1;
 	setTimeout(function(){tutorial();},2000);
+};
+function refresh(urlnow){
+	chrome.tabs.update({
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=extra_quest_event_adventure&action=proceed&island_id=1&area_id=41&stage_id=201&evid=54&newest=1&_="+$.now()
+	})
+	setTimeout(function(){refresh(urlnow);},2000);
 };
 function changeCardset(cardsetInit){
 	if(pag>4){

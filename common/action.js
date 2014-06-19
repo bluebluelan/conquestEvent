@@ -3,15 +3,21 @@ var FriendUrl="http://zc2.ayakashi.zynga.com/app.php?_c=friend";
 var battleUrl="http://zc2.ayakashi.zynga.com/app.php?_c=battle";
 var AcceptUrl="http://zc2.ayakashi.zynga.com/app.php?_c=webMessageCenter";
 var ExtraUrl="http://zc2.ayakashi.zynga.com/app.php?_c=extra_quest_event_adventure&action=proceed&island_id=1&area_id=41&stage_id=201&evid=54&newest=1";
+var DesUrl="http://zc2.ayakashi.zynga.com/app.php?_c=deposit"
 var battlehref = [];
 //var zid = [];
 var parIn = 0;
 var friendZid = [];
 var ii=0
-var item_id;
+var item_id= [];
 var encounterEvent = [];
 var isBattlelist;
 var isExtraEvent;
+var isDeposit =[];
+var isCaptcha =[];
+var itemid = [];
+var acceptlist = [];
+var flag = 0;
 ////////////////////////////////////Variable/////////////////////////////////
 	/*$(".remaining-time").children().css("color","#d84676");
 	$(".ribbon-title-top-right").css("color","#d84676").css("font-size","17px").text("可立刻交換");
@@ -19,7 +25,7 @@ var isExtraEvent;
 	$(".gold-apple").next().text("99999");*/
 ////////////////////////////////////////////////////////////////////////////	
 //alert($("a#update-battle-list").text());
-	$(".button.mini").mouseover(function(){
+	/*$(".button.mini").mouseover(function(){
 		if (geturl==FriendUrl){
 			$("button[data-zid]").each(function(){
 				friendZid[ii] =$(this).attr('data-zid')+"";
@@ -29,39 +35,52 @@ var isExtraEvent;
 			});
 			chrome.runtime.sendMessage(friendZid);
 		}
-	});
+	});*/
 isBattlelist=geturl.match(/battle_list/);
 isExtraEvent=geturl.match(/extra_quest_event_adventure/);
+isDeposit=geturl.match(/deposit/);
+isWebMsg=geturl.match(/webMessageCenter/);
+if(geturl.match(/login_bonus/)=="login_bonus"){
+//	chrome.runtime.sendMessage({type: "goTodeposit"});
+	/*setTimeout(function(){
+		if(geturl.match(/Deposit/)=="Deposit"){
+			chrome.runtime.sendMessage({type: "deposit",data: $("#category-head").next().attr("eid")});
+		}	
+			// auto accept friend--
+	},3000);*/
+}
 setTimeout(function(){
 	if(isBattlelist=="battle_list"){
-		alert($("a#update-battle-list").text());
+	//	alert($("a#update-battle-list").text());
 		searchenemybyspirit();
 	}
 	else if (geturl==AcceptUrl){
 		$("ul#events-27006").children().each(function(){
-			$("a.button.sub.accept.ok").click();
-			chrome.runtime.sendMessage($(this).attr("eid"));
+			acceptlist.push($(this).attr("eid"));
 		});
+		console.log(acceptlist);
+		chrome.runtime.sendMessage({type: "FriendAccept",data: acceptlist});
 	}
 	else if (geturl=ExtraUrl){
 		encounterEvent=$("pre").text().match(/battle_id\=(\d{6})/);
 		chrome.runtime.sendMessage({type: "ExtraEventBoss",data: encounterEvent[1]});
 	}
-		// auto accept friend--
-},1000);
+			// auto accept friend--
+},3000);
 //////////////////////////////function//////////////////////
 function searchenemybyspirit(){
 //	item_id=geturl.match(/target_item_id\=(\d+)/);
 	$("div.status").children().children(".defense-kiai").next("dd").each(function(){
 				parIn = parseInt($(this).text(),10);
 			//	alert($(this).parents("a").prop("href"));
-				if(parIn<70){
+				if(parIn<300){
 			//		alert(parIn);
 					var zid = [];
 					battlehref=$(this).parents("a").prop("href");
 					zid=battlehref.match(/target_user_id\=(\d{11})/);
+					console.log(zid[1]);
 					//alert(zid[1]);
-					chrome.runtime.sendMessage({type: "SEBS",data: zid[1]/*,item: item_id[1]*/});
+					chrome.runtime.sendMessage({type: "SEBS",data: zid[1]});
 				}
 			});
 
