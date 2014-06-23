@@ -49,10 +49,13 @@ if(geturl.match(/login_bonus/)=="login_bonus"){
 			// auto accept friend--
 	},3000);*/
 }
-setTimeout(function(){
-	if(isBattlelist=="battle_list"){
+setInterval(function(){
+//setTimeout(function(){
+	console.log(flag);
+	if(isBattlelist=="battle_list"&&flag == 0){
 	//	alert($("a#update-battle-list").text());
 		searchenemybyspirit();
+		console.log(flag);
 	}
 	else if (geturl==AcceptUrl){
 		$("ul#events-27006").children().each(function(){
@@ -66,7 +69,7 @@ setTimeout(function(){
 		chrome.runtime.sendMessage({type: "ExtraEventBoss",data: encounterEvent[1]});
 	}
 			// auto accept friend--
-},3000);
+},1500);
 //////////////////////////////function//////////////////////
 function searchenemybyspirit(){
 //	item_id=geturl.match(/target_item_id\=(\d+)/);
@@ -79,6 +82,7 @@ function searchenemybyspirit(){
 					battlehref=$(this).parents("a").prop("href");
 					zid=battlehref.match(/target_user_id\=(\d{11})/);
 					console.log(zid[1]);
+					flag=1;
 					chrome.runtime.sendMessage({type:"SEBS", data: zid[1]});
 				}
 			});

@@ -11,8 +11,8 @@ var cardset	=[];
 //點擊即可更換排組
 var cardset1=[8543,8223,12552,11360,11247];
 var cardset2=[22196,8223,11360,12552,11247];
-var cardset3=[7620,17474,12552,11360,11247];
-var cardset4=[8974,14690,3928,58,20750];
+var cardset3=[8543,8223,12552,11360,11247];
+var cardset4=[22196,21196,9511,19985,16911];
 var cardset5=[18309,3928,9748,15505,14690];
 var zzid = 33570018637;
 var utimestamp;
@@ -47,10 +47,10 @@ $(function(){
 		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 			tutorial_step=tabs[0].url;
 		})
-		alert(tutorial_step);
-		step=tutorial_step.match(/tutorial_step=(\d.)/);	
-		pag=parseInt(step[1]);
-	    tutorial();
+		step=tutorial_step.match(/target_user_id\=(\d{11})&/);
+		alert(step);
+		console.log(step[1]);
+	    tutorial(step[1]);
 	});
 });
 $(function(){
@@ -59,6 +59,7 @@ $(function(){
 		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 			tutorial_step=tabs[0].url;
 		})
+		console.log(tutorial_step);
 		refresh(tutorial_step);
 	});
 });
@@ -93,7 +94,7 @@ $(function(){
 		cardd = $(this).prop('id');
 		if($("#BatchCard").prop("checked")){
 			cardset1=[5553,5490,5521,5489,5605];
-			cardset2=[17633,5490,5521,5489,5605];
+			cardset2=[26303,5490,5521,5489,5605];
 			cardset3=[8965,22485,5489,5605,5521];
 			cardset4=[19760,23417,10821,25493,47];
 			cardset5=[22877,23417,23172,25493,19760];	
@@ -129,7 +130,7 @@ $(function(){
 		else if(cardd == "cardset3"){
 			setTimeout(function(){
 				chrome.tabs.update({
-					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=defense"
 				})
 			},1000);
 			setTimeout(function(){
@@ -138,12 +139,12 @@ $(function(){
 				})
 			},2000);
 			pag=1;
-			setTimeout(function(){changeCardset(cardset3);},3000);
+			setTimeout(function(){changeCardsetDefense(cardset3);},3000);
 		}
 		else if(cardd == "cardset4"){
 			setTimeout(function(){
 				chrome.tabs.update({
-					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=offense"
+					url:"http://zc2.ayakashi.zynga.com/app.php?_c=monster&action=resetPriority&list_type=defense"
 				})
 			},1000);
 			setTimeout(function(){
@@ -152,7 +153,7 @@ $(function(){
 				})
 			},2000);
 			pag=1;
-			setTimeout(function(){changeCardset(cardset4);},3000);
+			setTimeout(function(){changeCardsetDefense(cardset4);},3000);
 		}
 		else if(cardd == "cardset5"){
 			setTimeout(function(){
@@ -373,16 +374,18 @@ function ggetUrl(){
 	alert(pag);
 	tutorial();
 };
-function tutorial(){
-	if(pag>39){
-		pag=3;
+function tutorial(zid){
+	if(pag>itemidlist.length){
+		pag=0;
 		return;
 	}
-	chrome.tabs.update({
-			url:"http://zc2.ayakashi.zynga.com/app.php?_c=tutorial&action=next&tutorial_step="+pag
+	itemidlist = [4];
+	chrome.tabs.create({
+			url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=battle_confirm&target_user_id="+zid+"&evid=56&ref=undefined&target_item_id="+itemidlist[pag]
+	//		url:"http://zc2.ayakashi.zynga.com/app.php?_c=tutorial&action=next&tutorial_step="+pag
 	})
 	pag=pag+1;
-	setTimeout(function(){tutorial();},2000);
+	setTimeout(function(){tutorial(zid);},2000);
 };
 function refresh(urlnow){
 	chrome.tabs.update({
@@ -400,4 +403,16 @@ function changeCardset(cardsetInit){
 	})
 	pag=pag+1;
 	setTimeout(function(){changeCardset(cardsetInit);},1000);
+};
+function changeCardsetDefense(cardsetInit){
+	if(pag>4){
+		//pag=3;
+		return;
+	}
+	chrome.tabs.update({
+				url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardsetInit[pag]+"&list_type=defense&_c=monster&action=setOdMonster"
+				//url:"http://zc2.ayakashi.zynga.com/app.php?inventory_monster_id="+cardsetInit[pag]+"&list_type=offense&_c=monster&action=setOdMonster"
+	})
+	pag=pag+1;
+	setTimeout(function(){changeCardsetDefense(cardsetInit);},1000);
 };

@@ -1,5 +1,6 @@
 var ZG_UA='Mozilla/5.0 (Linux; U; Android 2.3.4; zh-cn; GT-I9100 Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 ZyngaBundleIdentifier/com.zynga.zjayakashi ZyngaBundleVersion/1.7.0';
 var ziddata = {};
+var itemidlist = [];
 var qq=0;
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(details) {
@@ -19,8 +20,9 @@ chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
 	//	ziddata=request;
 		if(request.type=="SEBS"){
-		//	alert(request.data);
-			qq=2;
+		//	alert(request.data);	
+			qq=0;
+			itemidlist = [2];
 			AutoAttack(request.data);
 		}
 		else if(request.type=="poke"){
@@ -88,18 +90,18 @@ function AutoAccept(fileArr){
 	},1000);
 };
 function AutoAttack(fileArr){
-	if(qq>4){
-		qq=2;
+	if(qq>itemidlist.length-1){
+		qq=0;
 		return;
 	}
 	chrome.tabs.create({
-		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id="+qq+"&evid=56"
+		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id="+itemidlist[qq]+"&evid=56"
 ////		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id="+itemid+"&evid=52"
 	})
 	qq=qq+1;
 	setTimeout(function(){
 		AutoAttack(fileArr);
-	},1000);
+	},2000);
 };
 function AutoPoke(fileArr){
 	var ziddata=fileArr[qq];
