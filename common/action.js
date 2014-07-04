@@ -18,6 +18,8 @@ var isDeposit =[];
 var isCaptcha =[];
 var itemid = [];
 var acceptlist = [];
+var leaderDetail = [];
+var monsterDetail = [];
 var flag = 0;
 ////////////////////////////////////Variable/////////////////////////////////
 	/*$(".remaining-time").children().css("color","#d84676");
@@ -70,7 +72,7 @@ setTimeout(function(){
 	}*/
 //	console.log(geturl);
 	else if (geturl==ConUrl){
-		console.log("QQQQQ")
+		searchenemybyspirit();
 	}
 	else{
 		console.log("HHH")
@@ -79,8 +81,32 @@ setTimeout(function(){
 },3000);
 //////////////////////////////function//////////////////////
 function searchenemybyspirit(){
-//	item_id=geturl.match(/target_item_id\=(\d+)/);
-	$("div.status").children().children(".defense-kiai").next("dd").each(function(){
+	i=1
+	monsterDetail.push($("div.ctlt").next().children().children(".iad").text())
+	monsterDetail.push($("div.ctlt").next().children().children(".ia").text())
+	monsterDetail.push($("div.ctlt").next().children().children(".id").text())
+	monsterDetail.push($("div.ctlt").next().children().children(".ic").text())
+	console.log(monsterDetail)
+	$("div#ctlm").children().each(function(){
+		if (i<10){
+			monsterDetail.push($(this).children().children(".iad").text())
+			monsterDetail.push($(this).children().children(".ia").text())
+			monsterDetail.push($(this).children().children(".id").text())
+			monsterDetail.push($(this).children().children(".ic").text())
+			i+=1
+		}
+	})
+	console.log(monsterDetail);
+	console.log("QQQQQ")
+	chrome.runtime.sendMessage({type:"SEBS",data:monsterDetail});
+	console.log("Action Finish");
+};
+//	}
+//	console.log(monsterDetail);
+	//console.log(monsterDetail.length);
+//	chrome.runtime.sendMessage({type:"Conquest", data: leaderDetail,monsterDetail})
+	/*
+	children().children(".defense-kiai").next("dd").each(function(){
 				parIn = parseInt($(this).text(),10);
 			//	alert($(this).parents("a").prop("href"));
 				if(parIn<40){
@@ -93,5 +119,4 @@ function searchenemybyspirit(){
 					chrome.runtime.sendMessage({type:"SEBS", data: zid[1]});
 				}
 			});
-
-};
+*/

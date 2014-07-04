@@ -13,15 +13,18 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     return {requestHeaders: details.requestHeaders};
   },
   {urls: [
-    "http://zc2.ayakashi.zynga.com/*"]},
+    "http://zc2.ayakashi.zynga.com/*",
+	"http://yasushi.me/ayabeta/*"
+	]},
   ["blocking", "requestHeaders"]);
-  
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
 		if(request.type=="SEBS"){
-			qq=0;
-			itemidlist = [2,3,4];
-			AutoAttack(request.data);
+		//	qq=0;
+		//	itemidlist = [2,3,4];
+		//	AutoAttack(request.data);
+		//	alert(request.data);
 		}
 		else if(request.type=="poke"){
 			AutoPoke(request.data);
