@@ -4,6 +4,7 @@ var battleUrl="http://zc2.ayakashi.zynga.com/app.php?_c=battle";
 var AcceptUrl="http://zc2.ayakashi.zynga.com/app.php?_c=webMessageCenter";
 var ExtraUrl="http://zc2.ayakashi.zynga.com/app.php?_c=extra_quest_event_adventure&action=proceed&island_id=1&area_id=41&stage_id=201&evid=54&newest=1";
 var DesUrl="http://zc2.ayakashi.zynga.com/app.php?_c=deposit"
+var ConUrl="http://yasushi.me/ayabeta/conquest.html"
 var battlehref = [];
 //var zid = [];
 var parIn = 0;
@@ -49,9 +50,8 @@ if(geturl.match(/login_bonus/)=="login_bonus"){
 			// auto accept friend--
 	},3000);*/
 }
-setInterval(function(){
-//setTimeout(function(){
-	console.log(flag);
+//setInterval(function(){
+setTimeout(function(){
 	if(isBattlelist=="battle_list"&&flag == 0){
 	//	alert($("a#update-battle-list").text());
 		searchenemybyspirit();
@@ -64,12 +64,19 @@ setInterval(function(){
 		console.log(acceptlist);
 		chrome.runtime.sendMessage({type: "FriendAccept",data: acceptlist});
 	}
-	else if (geturl=ExtraUrl){
+	/*else if (geturl=ExtraUrl){
 		encounterEvent=$("pre").text().match(/battle_id\=(\d{6})/);
 		chrome.runtime.sendMessage({type: "ExtraEventBoss",data: encounterEvent[1]});
+	}*/
+//	console.log(geturl);
+	else if (geturl==ConUrl){
+		console.log("QQQQQ")
+	}
+	else{
+		console.log("HHH")
 	}
 			// auto accept friend--
-},1500);
+},3000);
 //////////////////////////////function//////////////////////
 function searchenemybyspirit(){
 //	item_id=geturl.match(/target_item_id\=(\d+)/);

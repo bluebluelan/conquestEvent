@@ -18,11 +18,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendRequest){
-	//	ziddata=request;
 		if(request.type=="SEBS"){
-		//	alert(request.data);	
 			qq=0;
-			itemidlist = [2];
+			itemidlist = [2,3,4];
 			AutoAttack(request.data);
 		}
 		else if(request.type=="poke"){
@@ -62,9 +60,6 @@ chrome.runtime.onMessage.addListener(
 			qq=0;
 			AutoAccept(request.data);
 		}
-	//	AutoPoke(ziddata);
-	//	AutoAttack(ziddata);
-	//	AutoAccept(ziddata);
 	}
 )
 /////////////////////////////////function//////////////////////////////
@@ -81,7 +76,6 @@ function AutoAccept(fileArr){
 	}
 	console.log(fileArr[qq])
 	chrome.tabs.create({
-		//	 http://zc2.ayakashi.zynga.com/app.php?_c=ZJWebMessageCenter&action=syncAcceptEvent&event_id=8818253845374204ee922e&action_key=onNeighborAccepted&is_json=true&_=1400244636820
 		url:"http://zc2.ayakashi.zynga.com/app.php?_c=ZJWebMessageCenter&action=syncAcceptEvent&event_id="+fileArr[qq]+"&action_key=onNeighborAccepted&is_json=true&_="+$.now()
 	});
 	qq=qq+1;
@@ -96,7 +90,6 @@ function AutoAttack(fileArr){
 	}
 	chrome.tabs.create({
 		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id="+itemidlist[qq]+"&evid=56"
-////		url:"http://zc2.ayakashi.zynga.com/app.php?_c=parts_pvp_event&action=exec_battle&target_user_id="+fileArr+"&target_item_id="+itemid+"&evid=52"
 	})
 	qq=qq+1;
 	setTimeout(function(){
