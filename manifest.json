@@ -1,6 +1,6 @@
 {
-  "name": "靈異陰陽錄Chrome版",
-  "version": "1.0",
+  "name": "靈異陰陽錄討伐試算表",
+  "version": "1.1",
   "manifest_version": 2,
   "description": "Blue",
   "icons": {
@@ -10,7 +10,7 @@
    ,
    "content_scripts": [
     {
-      "matches": ["http://zc2.ayakashi.zynga.com/*","http://yasushi.me/ayabeta/*"],
+      "matches": ["http://yasushi.me/ayabeta/*"],
       "js": [
 		"common/jquery.min.js",
 		"common/action.js"
@@ -19,9 +19,7 @@
     }
   ],
   "permissions": [
-    "http://zc2.ayakashi.zynga.com/*",
 	"http://yasushi.me/ayabeta/*",
-    "\u003Call_urls\u003E",    
     "webRequest",
     "webRequestBlocking",
     "tabs"

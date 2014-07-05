@@ -15,48 +15,36 @@
 	<label class="index_label" style="color:#ffffff;">あやかし陰陽録</label>
 	</div>
 	<div class="index_input">
-	<button class="file_button" style="margin-left: 0px;" id="Refresh">AutoRefresh</button>
-	<button class="file_button" style="margin-left: 0px;" id="AutoFriend">Auto Tutorial</button>
-	<button class="file_button" style="margin-left: 0px;" id="select_file">Select Com.Zynga</button>
+	<button class="file_button" style="margin-left: 0px;" id="Refresh">Get Daemons Data</button>
+	Target Level<input type="text" id="tLevel" placeholder="Target Level"></input>
 	</div>
-	<div class="checkbx" style="color:#000000; padding:5px;">
-    <input type="checkbox" id="BatchAddMode" value="2"/>Bth.Add
-	<input type="checkbox" id="BatchRemove" value="3"/>Bth.Remove
-	<input type="checkbox" id="BatchTutorial" value="4"/>Bth.Tutorial
-	<input type="checkbox" id="BatchCard" value="5"/>Cardset
+	<div class="checkbx" style="color:#000000; padding:3px;">Boosting Attack Ratio
+	<select id="attack">
+		<option value="0">0%</option>
+		<option value="3">3%</option>
+		<option value="7">7%</option>
+		<option value="10">10%</option>
+		<option value="35">35%</option>
+		<option value="38">38%</option>
+		<option value="42">42%</option>
+		<option value="45">45%</option>
+	</select>Boosting HP Ratio
+	<select id="HP">
+		<option value="0">0%</option>
+		<option value="3">3%</option>
+		<option value="7">7%</option>
+		<option value="10">10%</option>
+		<option value="35">35%</option>
+		<option value="38">38%</option>
+		<option value="42">42%</option>
+		<option value="45">45%</option>
+	</select>
 	</div>
-	<button class="card_button" style="margin-left: 0px;" id="cardset1">CardSet1</button>
-	<button class="card_button" style="margin-left: 0px;" id="cardset2">CardSet2</button>
-	<button class="card_button" style="margin-left: 0px;" id="cardset3">CardSet3</button>
-	<button class="card_button" style="margin-left: 0px;" id="cardset4">CardSet4</button>
-	<button class="card_button" style="margin-left: 0px;" id="cardset5">CardSet5</button>
-	<input type="file" id="file" name="file" class="file" onchange="readmultifiles(this.files)" multiple=""/>
+	<input type="text" id="AS" placeholder="Your attackSpirit"></input><input type="text" id="DS" placeholder="Your defenseSpirit"></input>
+	<div class="index_input">
+	<button class="file_button" style="margin-left: 0px;" id="printAD">Calculate</button>
+	</div>
 	<script>
-	function readmultifiles(files) {
-		var ret = "";
-		var ul = document.querySelector("#bag>ul");
-		while (ul.hasChildNodes()) {
-			ul.removeChild(ul.firstChild);
-		}
-		for (var i = 0; i < files.length; i++)  //for multiple files
-		{
-			var f = files[i];
-			var name = files[i].name;
-			alert(name);
-			var reader = new FileReader();  
-			reader.onload = function(e) {  
-            // get file content  
-				var text = e.target.result;
-				var li = document.createElement("li");
-				li.innerHTML = name + "____" + text;
-				ul.appendChild(li);
-			}
-			reader.readAsText(f,"UTF-8");
-		}
-	}
-</script>
-	</div>
-	<div class="main_memu" ></div>
-	<div class="nav_memu" ></div>
+	</script>
 </body>
 </html>
