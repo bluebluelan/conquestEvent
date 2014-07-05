@@ -58,19 +58,21 @@ $(function(){
 			DamageAmount = []	
 			spiritConsumption = []
 			spiritWater = 0
-			console.log(monsterAttacklist[monsterlevel-1])
 			for (var daemonSet=0;daemonSet<37;daemonSet+=4){
 				attackAmount+=parseInt(data[daemonSet+1])
 				defenseAmount+=parseInt(data[daemonSet+2])
 				spiritAmount+=parseInt(data[daemonSet+3])
-				monsterDamage = monsterAttacklist[monsterlevel-1]*multipleMonsterAttack*53/50-defenseAmount*53/200
+				//monsterDamage = monsterAttacklist[monsterlevel-1]*multipleMonsterAttack*53/50-defenseAmount*53/200
+				monsterDamage = Math.max((monsterAttacklist[monsterlevel-1]*multipleMonsterAttack-defenseAmount/4),100)
 				cDamage = (attackAmount/25)*(13+7*multipleAttack)-monsterDefenselist[monsterlevel-1]*multipleMonsterDef*12/125*(1+daemonSet/4)
 				monDamage.push(parseInt(monsterDamage))
 				cardDamage.push(parseInt(cDamage))
 				spiritConsumption.push(spiritAmount/2)
 				yourhp.push((attackAmount/2+defenseAmount)*(1+parseInt(multipleHP)))
 			}
+			console.log("Monster damage as below")
 			console.log(monDamage)
+			console.log("Your HP as below")
 			console.log(yourhp)
 			for(i=4;i<10;i++){
 				cardDamage[i]=cardDamage[i]+(1+Math.floor(i/7))*cardDamage[0]
@@ -96,6 +98,7 @@ $(function(){
 				card7=Math.ceil(attacktimes/4)
 				DamageAmount[index]=cardDamage[3]*card4+cardDamage[6]*card7+cardDamage[index]*(attacktimes-card4-card7)
 			}
+			console.log("Daemons' damage as below")
 			console.log(DamageAmount)
 			monsterTempHp=parseInt(monsterhplist[monsterlevel-1])
 			oneSpiritDamage=0
@@ -105,7 +108,7 @@ $(function(){
 			for(;remainSpirit >= spiritConsumption[9]*2;){
 				remainSpirit -= spiritConsumption[9]
 				oneSpiritDamage+=DamageAmount[9]
-			//	cardsqeunce.push(10)
+				cardsqeunce.push(10)
 			}
 			for(;spiritConsumption[0]*2<=remainSpirit;){
 				for(i=8;0<=i;i--){
@@ -116,7 +119,7 @@ $(function(){
 					}
 				}
 			}
-			console.log(oneSpiritDamage)
+			console.log("One spirit water may deal "+oneSpiritDamage+" damages")
 			i=0
 			totalcost=0
 			tenCardNumber=0
@@ -125,6 +128,7 @@ $(function(){
 			spiritWater=Math.max(Math.floor(monsterTempHp/oneSpiritDamage),0)
 			monsterTempHp=monsterTempHp-oneSpiritDamage*spiritWater
 			totalcost=spiritWater*spiritTotal
+			console.log("After drink "+spiritWater+" spirit water, it remains "+monsterTempHp+" HP")
 			for(i=0;i < 10;i++){
 				//Calculate TenCards Time++
 				if (DamageAmount[9]<monsterTempHp){
@@ -139,6 +143,7 @@ $(function(){
 				//Calculate TenCards Time--
 				else if (DamageAmount[i]>=monsterTempHp){
 					totalcost+=spiritConsumption[i]
+					console.log("QQQQ "+(i+1))
 					attackTotalcost+=Math.floor(spiritConsumption[i]*(atkRatio))
 					defenseTotalcost+=Math.floor(spiritConsumption[i]*(defRatio))
 					spiritWaterTotal.push(Math.max(parseInt(spiritWater),0))
@@ -150,15 +155,23 @@ $(function(){
 				}
 			}
 			if (spiritWater>0){
-				alert("Your need "+spiritWater+" spirit water, "+tenCardNumber+" x 10 cards and 1 x "+i+" cards to defeat level "+monsterlevel+" monster")
+				if(tenCardNumber>0){
+					alert("Your need "+spiritWater+" spirit water, "+tenCardNumber+" x 10 cards and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+				}
+				else{
+					alert("Your need "+spiritWater+" spirit water and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+				}
 			}
 			else {
-				alert("Your need "+tenCardNumber+" x 10 cards and 1 x "+i+" cards to defeat level "+monsterlevel+" monster")
+				if(tenCardNumber>0){
+					alert("Your need "+tenCardNumber+" x 10 cards and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+				}
+				else{
+					alert("Your need 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+				}
 			}
-			console.log(totalcost)
-			console.log("spiritWater"+spiritWater)
-			console.log("tenCardNumber"+tenCardNumber)
-			console.log("ultimateSpiritAmount"+ultimateSpiritAmount)
-			console.log(spiritWaterTotal)
+			console.log("Your need to drink "+spiritWater+" spirit water")
+			//console.log("ultimateSpiritAmount"+ultimateSpiritAmount)
+			//console.log(spiritWaterTotal)
 	});
 });

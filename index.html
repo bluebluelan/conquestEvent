@@ -5,9 +5,7 @@
 <title>靈異陰陽錄</title>
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" href="css/animate-custom.css">
 <script type="text/javascript" src="common/jquery.min.js"></script>
-<script type="text/javascript" defer="defer" src="common/cryptojs/rollups/aes.js"></script>
 <script type="text/javascript" defer="defer" src="script/index.js"></script>
 </head>
 <body background="image/background.jpg" class="index">
@@ -15,8 +13,8 @@
 	<label class="index_label" style="color:#ffffff;">あやかし陰陽録</label>
 	</div>
 	<div class="index_input">
-	<button class="file_button" style="margin-left: 0px;" id="Refresh">Get Daemons Data</button>
-	Target Level<input type="text" id="tLevel" placeholder="Target Level"></input>
+	<button class="file_button" style="margin-left: 0px; padding:3px" id="Refresh">Get Daemons Data</button>
+	　　　　<input type="text" id="tLevel" placeholder="Target Level"></input>
 	</div>
 	<div class="checkbx" style="color:#000000; padding:3px;">Boosting Attack Ratio
 	<select id="attack">
@@ -40,11 +38,11 @@
 		<option value="45">45%</option>
 	</select>
 	</div>
-	<input type="text" id="AS" placeholder="Your attackSpirit"></input><input type="text" id="DS" placeholder="Your defenseSpirit"></input>
+	<div class="index_input">
+	<input type="text" id="AS" placeholder="Your attack spirit"></input>　　　　<input type="text" id="DS" placeholder="Your defense spirit"></input>
+	</div>
 	<div class="index_input">
 	<button class="file_button" style="margin-left: 0px;" id="printAD">Calculate</button>
 	</div>
-	<script>
-	</script>
 </body>
 </html>
