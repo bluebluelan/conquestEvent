@@ -16,33 +16,6 @@
 	font-family:DFKai-sb;
 	height:40px
 }
-.index .indeximg{
-	margin-top:10px; 
-	margin-bottom:0px; 
-	border:0px;
-	padding-left:10px;
-	vertical-align:middle;
-	width:75px;
-	height:60px
-}
-.index .navimg{
-	margin-top:20px; 
-	margin-bottom:0px; 
-	border:0px;
-	padding-left:10px;
-	vertical-align:middle;
-	width:65px;
-	height:48px
-}
-.index .file{
-	height:0px;
-	border:10px; 
-	margin-left:-10px;
-	margin-right:-10px;
-	opacity:0;
-	position:absolute;
-	width:0px
-}
 .index .index_input{
 	background:url('../image/inputbg.jpg');
 	margin-left:-10px; 
@@ -74,49 +47,4 @@
 }
 .index_input{
 	margin-top:28px
-}
-.index .text_input{
-	border:0px solid #ccc;
-	height:20px;
-	line-height:20px
-}
-.main_memu{
-	background:url('../image/aya.png') no-repeat 0 0;
-	height:201px;
-	width:430px; 
-	margin-left:-10px; 
-	margin-bottom:-50px; 
-	margin-top:250px
-}
-.card_button {
-	font-size:12px;
-	font-family:Arial;
-	font-family:helvetica;
-	margin-top:5px; 
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-	border-radius:8px;
-	border:1px solid #dcdcdc;
-	padding:5px 11px;
-	text-decoration:none;
-	background:-moz-linear-gradient( center top, #ffffff 5%, #f6f6f6 100% );
-	background:-ms-linear-gradient( top, #ffffff 5%, #f6f6f6 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6');
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #ffffff), color-stop(100%, #f6f6f6) );
-	background-color:#ffffff;
-	color:#666666;
-	display:inline-block;
-	text-shadow:1px 1px 0px #ffffff;
- 	-webkit-box-shadow:inset 1px 1px 0px 0px #ffffff;
- 	-moz-box-shadow:inset 1px 1px 0px 0px #ffffff;
- 	box-shadow:inset 1px 1px 0px 0px #ffffff;
-}.card_button:hover {
-	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
-	background:-ms-linear-gradient( top, #f6f6f6 5%, #ffffff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #f6f6f6), color-stop(100%, #ffffff) );
-	background-color:#f6f6f6;
-}.card_button:active {
-	position:relative;
-	top:1px;
 }

@@ -13,9 +13,9 @@ var monsterAttacklist = [1500, 1900, 2300, 2700, 3100, 3500, 3900, 4300, 4700, 5
 var monsterDefenselist =[250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 2500, 2930, 3360, 3790, 4210, 4640, 5060, 5470, 5890, 6300, 6710, 7120, 7520, 7930, 8330, 8720, 9120, 9510, 9900, 10290, 10670, 11060, 11440, 11810, 12190, 12500, 12820, 13140, 13450, 13760, 14070, 14380, 14690, 14990, 15290, 15590, 15880, 16170, 16460, 16750, 17040, 17320, 17600, 17880, 18150, 18420, 18690, 18960, 19230, 19490, 20000, 20210, 20410, 20610, 20810, 21010, 21210, 21400, 21590, 21780, 21960, 22140, 22320, 22500, 22680, 22850, 23020, 23190, 23350, 23510, 23670, 23830, 23990, 24140, 24290, 27500, 27600, 27690, 27780, 27870, 27950, 28030, 28110, 28190, 28265, 28340, 28415, 28475, 28540, 28600, 28660, 28720, 28770, 28830, 28885, 28940, 28975, 29015, 29055, 29095, 28755, 28960, 29130, 29300, 29470, 29640, 29810, 29970, 30130, 30280, 30430, 30580, 30730, 30880, 31030, 31180, 31330, 31480, 31630, 31790, 31950, 32060, 32190, 32310, 32440, 30000, 30240, 30480, 30720,30960, 31190, 31420, 31650, 31880, 32100, 32320, 32540, 32760, 32980, 33190, 33400, 33610, 33820, 34020, 34220, 34420, 34620, 34810, 35000, 35190, 32500, 32680, 32860, 33040, 33220, 33390, 33560, 33730, 33890, 34050, 34210, 34370, 34520, 34670, 34820, 34970, 35110, 35250, 35390, 35530, 35670, 35800, 35930, 36060, 36190, 37500]
 var monsterBattleTime = [180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
 var cardSetWithAD = []
-var ultimateSpiritAmount = []
+var ultimateSpiritAmount = 0
 var timeAmount = []
-var spiritWaterTotal = []
+var spiritWaterTotal = 0
 var data=[]
 //////////////////////
 var monDamage = []
@@ -33,7 +33,8 @@ $(function(){
 });
 $(function(){
 	$("#Refresh").click(function(){
-		console.log(data);
+		//console.log(data);
+		alert("Get data from this page");
 	});
 	$("#printAD").click(function(){
 		attackSpirit= parseInt($("#AS").val());
@@ -48,7 +49,7 @@ $(function(){
 		multipleHP=parseInt($("select#HP :selected").prop("value"))/100;
 		multipleAttack=parseInt($("select#attack :selected").prop("value"))/100;
 		monsterlevel= parseInt(monsterlevelhigh);
-//		for(var monsterlevel=1;monsterlevel<=monsterlevelhigh;monsterlevel++){
+		for(var monsterlevel=1;monsterlevel<=monsterlevelhigh;monsterlevel++){
 			monDamage = []
 			cardDamage = []
 			yourhp= []
@@ -62,18 +63,18 @@ $(function(){
 				attackAmount+=parseInt(data[daemonSet+1])
 				defenseAmount+=parseInt(data[daemonSet+2])
 				spiritAmount+=parseInt(data[daemonSet+3])
-				//monsterDamage = monsterAttacklist[monsterlevel-1]*multipleMonsterAttack*53/50-defenseAmount*53/200
-				monsterDamage = Math.max((monsterAttacklist[monsterlevel-1]*multipleMonsterAttack-defenseAmount/4),100)
-				cDamage = (attackAmount/25)*(13+7*multipleAttack)-monsterDefenselist[monsterlevel-1]*multipleMonsterDef*12/125*(1+daemonSet/4)
+				monsterDamage = Math.max((monsterAttacklist[monsterlevel-1]*multipleMonsterAttack*53/50-defenseAmount*53/200),100)
+			//	monsterDamage = Math.max((monsterAttacklist[monsterlevel-1]*multipleMonsterAttack-defenseAmount/4),100)
+				cDamage = Math.max((attackAmount/25)*(13+7*multipleAttack)-monsterDefenselist[monsterlevel-1]*multipleMonsterDef*12/125*(1+daemonSet/4),100)
 				monDamage.push(parseInt(monsterDamage))
 				cardDamage.push(parseInt(cDamage))
 				spiritConsumption.push(spiritAmount/2)
 				yourhp.push((attackAmount/2+defenseAmount)*(1+parseInt(multipleHP)))
 			}
-			console.log("Monster damage as below")
-			console.log(monDamage)
-			console.log("Your HP as below")
-			console.log(yourhp)
+			//console.log("Monster damage as below")
+			//console.log(monDamage)
+			//console.log("Your HP as below")
+			//console.log(yourhp)
 			for(i=4;i<10;i++){
 				cardDamage[i]=cardDamage[i]+(1+Math.floor(i/7))*cardDamage[0]
 			}
@@ -98,8 +99,8 @@ $(function(){
 				card7=Math.ceil(attacktimes/4)
 				DamageAmount[index]=cardDamage[3]*card4+cardDamage[6]*card7+cardDamage[index]*(attacktimes-card4-card7)
 			}
-			console.log("Daemons' damage as below")
-			console.log(DamageAmount)
+			//console.log("Daemons' damage as below")
+			//console.log(DamageAmount)
 			monsterTempHp=parseInt(monsterhplist[monsterlevel-1])
 			oneSpiritDamage=0
 			cardsqeunce = []
@@ -119,7 +120,7 @@ $(function(){
 					}
 				}
 			}
-			console.log("One spirit water may deal "+oneSpiritDamage+" damages")
+			//console.log("One spirit water may deal "+oneSpiritDamage+" damages")
 			i=0
 			totalcost=0
 			tenCardNumber=0
@@ -128,7 +129,7 @@ $(function(){
 			spiritWater=Math.max(Math.floor(monsterTempHp/oneSpiritDamage),0)
 			monsterTempHp=monsterTempHp-oneSpiritDamage*spiritWater
 			totalcost=spiritWater*spiritTotal
-			console.log("After drink "+spiritWater+" spirit water, it remains "+monsterTempHp+" HP")
+			//console.log("After drink "+spiritWater+" spirit water, it remains "+monsterTempHp+" HP")
 			for(i=0;i < 10;i++){
 				//Calculate TenCards Time++
 				if (DamageAmount[9]<monsterTempHp){
@@ -143,35 +144,44 @@ $(function(){
 				//Calculate TenCards Time--
 				else if (DamageAmount[i]>=monsterTempHp){
 					totalcost+=spiritConsumption[i]
-					console.log("QQQQ "+(i+1))
 					attackTotalcost+=Math.floor(spiritConsumption[i]*(atkRatio))
 					defenseTotalcost+=Math.floor(spiritConsumption[i]*(defRatio))
-					spiritWaterTotal.push(Math.max(parseInt(spiritWater),0))
+					spiritWaterTotal+=(Math.max(parseInt(spiritWater),0))
 					attackRecoverTime = ((spiritWater-Math.max(parseInt(spiritWater),0))*spiritTotal+attackTotalcost+defenseTotalcost)*atkRatio
 					defenseRecoverTime = ((spiritWater-Math.max(parseInt(spiritWater),0))*spiritTotal+attackTotalcost+defenseTotalcost)*defRatio
 					timeAmount.push(Math.max(attackRecoverTime,defenseRecoverTime/2))
-					ultimateSpiritAmount.push(parseInt((spiritWater-Math.max(parseInt(spiritWater),0))*spiritTotal+attackTotalcost+defenseTotalcost))
+					ultimateSpiritAmount+=parseInt((spiritWater-Math.max(parseInt(spiritWater),0))*spiritTotal+attackTotalcost+defenseTotalcost)
 					break
 				}
 			}
 			if (spiritWater>0){
 				if(tenCardNumber>0){
-					alert("Your need "+spiritWater+" spirit water, "+tenCardNumber+" x 10 cards and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+					console.log("Your need "+spiritWater+" spirit water, "+tenCardNumber+" x 10 cards and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
 				}
 				else{
-					alert("Your need "+spiritWater+" spirit water and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+					console.log("Your need "+spiritWater+" spirit water and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
 				}
 			}
 			else {
 				if(tenCardNumber>0){
-					alert("Your need "+tenCardNumber+" x 10 cards and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+					console.log("Your need "+tenCardNumber+" x 10 cards and 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
 				}
 				else{
-					alert("Your need 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
+					console.log("Your need 1 x "+(i+1)+" cards to defeat level "+monsterlevel+" monster")
 				}
 			}
 			console.log("Your need to drink "+spiritWater+" spirit water")
-			//console.log("ultimateSpiritAmount"+ultimateSpiritAmount)
-			//console.log(spiritWaterTotal)
+		};
+		totalTime=0;
+		for(var i=0;i<timeAmount.length;i++){
+			totalTime+=timeAmount[i];
+		}
+		totalhr=Math.floor(totalTime/60)
+		totalmin=Math.ceil(totalTime%totalhr)
+		Math.ceil(ultimateSpiritAmount/spiritTotal)
+		console.log("Total recover time: "+totalhr+" hrs and "+totalmin+" mins")
+		console.log("Need spirit water: "+spiritWaterTotal)
+		console.log("Need "+(spiritWaterTotal+Math.ceil(ultimateSpiritAmount/spiritTotal))+" spirit water without waiting to recover")
+		alert("Total recover time: "+totalhr+" hrs "+totalmin+" mins and "+spiritWaterTotal+" spirit water are needed")
 	});
 });

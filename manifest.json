@@ -1,11 +1,11 @@
 {
-  "name": "靈異陰陽錄討伐試算表",
-  "version": "1.1",
+  "name": "Ayakashi Ghost Guild Monthly Dungeon Simulator",
+  "version": "1.0",
   "manifest_version": 2,
-  "description": "Blue",
+  "description": "Calculate spirit water cost and recovery time for Ayakashi Ghost Guild Monthly Dungeon",
   "icons": {
-    "128": "image/unnamed.png",
-    "16": "image/unnamed.png"
+    "128": "image/ic_launcher.png",
+    "32": "image/ic_launcher.png"
  }
    ,
    "content_scripts": [
@@ -20,12 +20,10 @@
   ],
   "permissions": [
 	"http://yasushi.me/ayabeta/*",
-    "webRequest",
-    "webRequestBlocking",
     "tabs"
   ],
   "browser_action": {
-    "default_icon": "image/unnamed.png",
+    "default_icon": "image/ic_launcher.png",
     "default_popup": "index.html"
   },
   "background": {
