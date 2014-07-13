@@ -16,29 +16,51 @@
 	font-family:DFKai-sb;
 	height:40px
 }
+.index .ADL{
+	border:2px #34160B;
+	font-family:helvetica;
+}
 .index .index_input{
-	background:url('../image/inputbg.jpg');
+	background:url('../image/cbxbg.jpg')repeat;
 	margin-left:-10px; 
 	margin-right:-10px;
-	margin-top:0px; 	
+	margin-bottom:0px; 
 	font-family:helvetica;
 	border:0
 }
-.index .file_button{
-	background:none
-	no-repeat scroll 0 0;
+.index .index_bg{
+	background:url('../image/indexbg.jpg');
 	margin-left:-10px; 
 	margin-right:-10px;
+	font-family:helvetica;
+	border:0
+}
+.index .file_button_get{
+	background:url('../image/get.png');
+	no-repeat scroll 0 0;
 	border:0 none;
-	height:28px;
-	width:137px;
-	color:#FFF;
+	height:43px;
+	width:150px;	
+	color:#EBD88C;
 	cursor:pointer;
+	font-size:15px;
+	font-family:helvetica;
+	border-radius:0px
+}
+.index .file_button_cal{
+	background:url('../image/calculate.png');
+	no-repeat scroll 0 0;
+	border:0 none;
+	height:43px;
+	width:150px;
+	color:#EBD88C;
+	cursor:pointer;
+	font-size:15px;
 	font-family:helvetica;
 	border-radius:0px
 }
 .index .checkbx{
-	background:url('../image/cbxbg.jpg')
+	background:url('../image/inputbg.jpg')
 	repeat scroll 0 0;
 	margin-left:-10px;
 	margin-right:-10px; 

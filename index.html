@@ -8,41 +8,62 @@
 <script type="text/javascript" src="common/jquery.min.js"></script>
 <script type="text/javascript" defer="defer" src="script/index.js"></script>
 </head>
-<body background="image/background.jpg" class="index">
+<body background="image/background.jpg" class="index" style="width:400px">
 	<div class="index_logo">
 	<label class="index_label" style="color:#ffffff;">あやかし陰陽録</label>
 	</div>
-	<div class="index_input">
-	<button class="file_button" style="margin-left: 0px; padding:3px" id="Refresh">Get daemons data</button>
-	　　　　<input type="text" id="tLevel" placeholder="Target Level"></input>
+	<div class="checkbx" style="height:20px">
 	</div>
-	<div class="checkbx" style="color:#000000; padding:3px;">Boosting Attack Ratio
-	<select id="attack">
-		<option value="0">0%</option>
-		<option value="3">3%</option>
-		<option value="7">7%</option>
-		<option value="10">10%</option>
-		<option value="35">35%</option>
-		<option value="38">38%</option>
-		<option value="42">42%</option>
-		<option value="45">45%</option>
-	</select>Boosting HP Ratio
-	<select id="HP">
-		<option value="0">0%</option>
-		<option value="3">3%</option>
-		<option value="7">7%</option>
-		<option value="10">10%</option>
-		<option value="35">35%</option>
-		<option value="38">38%</option>
-		<option value="42">42%</option>
-		<option value="45">45%</option>
-	</select>
+	<div class="index_bg" style="height:175px;margin-bottom:-30px;opacity:0.9">
+		<div id="index_left" style="height:175px;width:50%;float:left">
+			<div style="margin-top:0px">
+			<img src="image/atk.png" style="margin-right:6px;margin-bottom:-5px;width:10%;height:15%">
+			<input class="ADL" type="text" id="AS" placeholder="　   Attack Spirit" style="background-color:#EDDA8C;margin-top:30px;height:20px;width:120px"></input>	
+			</div>
+			<div style="margin-top:25px">
+			<img src="image/def.png" style="margin-left:0px;margin-bottom:-5px;width:10%;height:15%">
+			<input class="ADL" type="text" id="DS" placeholder="     Defense Spirit" style="background-color:#EDDA8C;margin-left:7px;height:20px;width:120px"></input>
+			</div>
+			<div style="margin-top:25px">
+			<img src="image/guildRaidPoint.png" style="margin-left:2px;margin-bottom:-3px;width:8%;height:8%">
+			<input class="ADL" type="text" id="tLevel" placeholder="      Target Level" style="background-color:#EDDA8C;margin-left:8px;height:20px;width:120px"></input>
+			</div>
+		</div>
+		<div id="index_right" style="height:175px;width:50%;float:left">
+			<div style="color:#EDDA8C;margin-top:30px;border:20px #34160B">Boosting ATK Ratio</div>
+			<select id="attack" style="background-color:#EDDA8C;border:2px #34160B;margin-top:15px">
+				<option value="0">0%</option>
+				<option value="3">3%</option>
+				<option value="7">7%</option>
+				<option value="10">10%</option>
+				<option value="35">35%</option>
+				<option value="38">38%</option>
+				<option value="42">42%</option>
+				<option value="45">45%</option>
+			</select>
+			<div style="color:#EDDA8C;margin-top:20px;border:2px #34160B">Boosting HP Ratio</div>
+			<select id="HP" style="background-color:#EDDA8C;margin-top:15px;border:2px #34160B;">
+				<option value="0">0%</option>
+				<option value="3">3%</option>
+				<option value="7">7%</option>
+				<option value="10">10%</option>
+				<option value="35">35%</option>
+				<option value="38">38%</option>
+				<option value="42">42%</option>
+				<option value="45">45%</option>
+			</select>
+			<p></p>
+		</div>
 	</div>
-	<div class="index_input">
-	<input type="text" id="AS" placeholder="Your attack spirit"></input>　　　　<input type="text" id="DS" placeholder="Your defense spirit"></input>
+	<div class="checkbx" style="height:20px;margin-top:30px">
 	</div>
-	<div class="index_input">
-	<button class="file_button" style="margin-left: 0px;" id="printAD">Calculate</button>
+	<div style="width:400px;height:150px;margin-top:0px">
+		<div style="width:150px;height:100px;margin-left:40px;margin-top:10px;float:left">
+		<button class="file_button_cal" id="Refresh">Get daemons data</button>
+		</div>
+		<div style="width:150px;height:100px;margin-top:10px;margin-left:20px;float:left">
+		<button class="file_button_get" id="printAD">Calculate</button>
+		</div>
 	</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 var multipleMonsterDef = 1.05
-var multipleMonsterAttack = 1.1
+var multipleMonsterAttack = 1.05
 var multipleHP = 0 
 var multipleAttack = 0	
 var attackSpirit= 0 
